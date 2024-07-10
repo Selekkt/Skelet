@@ -40,8 +40,13 @@ x-scroll {
     timeline-scope: --carousel;
     max-width: 100vw;
 
-        .card img { max-width: 500px }
-        .scroll-snap { scroll-timeline: --carousel inline }
+        .scroll-snap { 
+            --scrollChildHeight: 600px;
+            scroll-timeline: --carousel inline;
+            
+        }
+
+        .card img { max-width: 100%; height: 100%; }
 
         button[data-next] { animation: auto next ease forwards; animation-timeline: --carousel }
         button[data-previous] { animation: auto prev ease forwards; animation-timeline: --carousel }    
@@ -93,21 +98,24 @@ x-scroll {
             x-scroll.customized {
                 --hMargin: 0;
 
+                position: relative;
                 max-width: 95%;
                 overflow: hidden;
                 margin: var(--margin) 2%;
 
                 scroll-nav { display: block; padding-block: var(--padding) }
+                scroll-pagination { display: block; margin-inline: auto;z-index: 9;}
                 .scroll-snap { --scrollMargin: .3rem; border-radius: 2rem }
 
                 .card {
                     &.dark { color: black }
                     .meta { margin: var(--margin) }
+                    img { max-height: 500px }
                 }
 
             }
         </style>
-        <x-scroll class="customized">
+        <x-scroll markers="true" class="customized">
             <scroll-nav>
                 <x-grid columns="2" ai="center">
                     <x-cell>
@@ -123,6 +131,8 @@ x-scroll {
                     </x-cell>
                 </x-grid>
             </scroll-nav>
+
+            <scroll-pagination></scroll-pagination>
 
             <ul class="scroll-snap align-start no-scrollbars no-style inside">
                 <li class="card">
@@ -177,30 +187,56 @@ x-scroll {
 // This Web Component makes the scroll-snap move when the buttons are clicked.
 // Since it is a web component you can have infinite instances of it without having to use IDs
 export default class xScroll extends HTMLElement {
-    constructor() { super(); this.initButtons(); }
-        
-    initButtons() {
-        // Find buttons within the component
+    constructor() {
+        super();
+
+        this.scroller = this.querySelector('.scroll-snap');
         this.buttonPrev = this.querySelector('button[data-previous]');
         this.buttonNext = this.querySelector('button[data-next]');
-        // Pre-bind methods to keep 'this' context
-        this.prevClickHandler = this.scrollBy.bind(this, -600);
-        this.nextClickHandler = this.scrollBy.bind(this, 600);
     }
     
     connectedCallback() {
-        if (this.buttonPrev) this.buttonPrev.addEventListener('click', this.prevClickHandler);
-        if (this.buttonNext) this.buttonNext.addEventListener('click', this.nextClickHandler);
+        if (this.buttonPrev) this.buttonPrev.addEventListener('click', () => this.scrollBy(-1));
+        if (this.buttonNext) this.buttonNext.addEventListener('click', () => this.scrollBy(1));
+
+        // Run createPaginationMarkers only if markers attribute is "true"
+        if (this.getAttribute('markers') === 'true') this.createPaginationMarkers();
     }
     
-    scrollBy(distance) {
-        // Find the first .scroll-snap element within this custom element to apply the scroll
-        const scroller = this.querySelector('.scroll-snap');
-        if (scroller) scroller.scrollBy({ left: distance, behavior: 'smooth' });
+    scrollBy(direction) {
+        if (this.scroller) {
+            const itemSize = this.scroller.firstElementChild ? this.scroller.firstElementChild.offsetWidth : 0;
+            this.scroller.scrollBy({ left: itemSize * direction, behavior: 'smooth' });
+        }
+    }
+
+    createPaginationMarkers() {
+        const items = this.scroller ? this.scroller.children : [];
+        // Check if a pagination container already exists
+        let pagination = this.querySelector('scroll-pagination');
+        // If it doesn't exist, create it
+        if (!pagination) {
+            pagination = document.createElement('scroll-pagination');
+            this.appendChild(pagination); // Append only if it was necessary to create a new one
+        }
+
+        Array.from(items).forEach((item, index) => {
+            const marker = document.createElement('button');
+            marker.type = 'button';
+            marker.classList = 'is-custom is-circle has-icon';
+            marker.innerHTML = index + 1; // Or use any other content or indicator
+            marker.addEventListener('click', () => {
+                this.scroller.scrollTo({
+                    left: item.offsetLeft,
+                    behavior: 'smooth'
+                });
+            });
+            pagination.appendChild(marker);
+        });
     }
 }
 
-if (!customElements.get('x-scroll')) (customElements.define('x-scroll', xScroll));
+if (!customElements.get('x-scroll')) customElements.define('x-scroll', xScroll);
 </script>
 
 </body>
