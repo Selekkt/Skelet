@@ -7,54 +7,48 @@
   <link rel="stylesheet" href="../css/skelet.css">
 
 <style>
-x-grid {
-  border-radius: 1rem;
-  overflow: hidden;
-  min-height: 150px;
-}
-
-</style>
-
-<style>
     /* ------------------
       css grid
     ------------------ */
     x-grid,[x-grid],[x-subgrid] { 
-        --grid-mm: 200px, 1fr; /* MinMax or auto-fit, auto-fill */
-        --grid-tc: repeat(4, minmax(0,1fr)); /* Template Columns */
+        --grid-mm: 0, 1fr; /* MinMax */
+        --grid-tc: repeat(var(--grid-tc-ln), minmax(var(--grid-mm))); /* Template Columns */
+        --grid-tc-ln: 1; /* Template Columns Line Name/Number */
         --grid-cs: 1; /* Column Start */
         --grid-ce: -1; /* Column End */
         --grid-rs: 1; /* Row Start */
         --grid-re: -1; /* Row End */
-    
+        --gap: var(--rowGap, 1rem) var(--columnGap, 1rem);
+
         display: grid;
-        gap: var(--rowGap, 1rem) var(--columnGap, 1rem);
+        gap: var(--gap);
         grid-template-columns: var(--grid-tc); /* default columns */ 
     }
 
-    [x-subgrid],[x-subgrid="column"] { grid-template-columns: subgrid }
+    [x-subgrid],[x-subgrid="column"] { --grid-tc: subgrid }
     [x-subgrid="row"]  { grid-template-rows: subgrid }
     [x-subgrid="both"] { grid: subgrid / subgrid  }
-    
+
     :where(x-grid,[x-grid],[x-subgrid]) img { object-fit: contain; max-width: 100% }
     :where(x-grid,[x-grid],[x-subgrid]) > * { appearance: none; -webkit-appearance: none }
-    
-    [columns="1"] { --grid-tc: repeat(1, minmax(0,1fr)) }
-    [columns="2"] { --grid-tc: repeat(2, minmax(0,1fr)) }
-    [columns="3"] { --grid-tc: repeat(3, minmax(0,1fr)) }
-    [columns="4"] { --grid-tc: repeat(4, minmax(0,1fr)) }
-    [columns="5"] { --grid-tc: repeat(5, minmax(0,1fr)) }
-    [columns="6"] { --grid-tc: repeat(6, minmax(0,1fr)) }
-    [columns="7"] { --grid-tc: repeat(7, minmax(0,1fr)) }
-    [columns="8"] { --grid-tc: repeat(8, minmax(0,1fr)) }
-    [columns="9"] { --grid-tc: repeat(9, minmax(0,1fr)) }
-    [columns="10"] { --grid-tc: repeat(10, minmax(0,1fr)) }
-    [columns="11"] { --grid-tc: repeat(11, minmax(0,1fr)) }
-    [columns="12"] { --grid-tc: repeat(12, minmax(0,1fr)) }
-    
-    [columns="fit"] { --grid-tc: repeat(auto-fit, minmax(var(--grid-mm))) }
-    [columns="fill"] { --grid-tc: repeat(auto-fill, minmax(var(--grid-mm))) }
-    [columns="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
+
+    [columns="1"] { --grid-tc-ln: 1 }
+    [columns="2"] { --grid-tc-ln: 2 }
+    [columns="3"] { --grid-tc-ln: 3 }
+    [columns="4"] { --grid-tc-ln: 4 }
+    [columns="5"] { --grid-tc-ln: 5 }
+    [columns="6"] { --grid-tc-ln: 6 }
+    [columns="7"] { --grid-tc-ln: 7 }
+    [columns="8"] { --grid-tc-ln: 8 }
+    [columns="9"] { --grid-tc-ln: 9 }
+    [columns="10"] { --grid-tc-ln: 10 }
+    [columns="11"] { --grid-tc-ln: 11 }
+    [columns="12"] { --grid-tc-ln: 12 }
+
+    [columns="fit"] { --grid-tc-ln: auto-fit }
+    [columns="fill"] { --grid-tc-ln: auto-fill }
+
+    [columns="1f"] { --grid-tc-ln: 1 }
     [columns="1f"] > * { grid-column: 1 / -1 }
     
     /*** Grid Column - X axis */
@@ -132,6 +126,66 @@ x-grid {
 <div id="app">
 
     <h1>CSS Subgrid</h1>
+
+
+    <section>
+        <x-grid columns="6">
+          <x-cell span="3" as="center" style="max-width: 50ch; margin: auto">
+            <h2>Subgrid gallery</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde voluptas maiores odio dignissimos vitae velit voluptatibus illo, obcaecati vel deserunt.</p>
+          </x-cell>
+
+          <x-cell span="3" x-subgrid>
+            <x-cell span="1"><img src="https://placehold.co/600x400?text=Skelet.+subgrids" alt="" /></x-cell>
+            <x-cell span="1"><img src="https://placehold.co/600x400?text=Skelet.+subgrids" alt="" /></x-cell>
+            <x-cell span="3.." span-y="2"><img src="https://placehold.co/400x830?text=Skelet.+subgrids" alt="" /></x-cell>
+            <x-cell span="2"><img src="https://placehold.co/600x400?text=Skelet.+subgrids" alt="" /></x-cell>
+          </x-cell>
+        </x-grid>
+      </section>
+
+<hr>
+
+<x-grid columns="12" class="debug">
+    <x-cell span=4 x-subgrid>
+        <x-cell span="2">Skelet.</x-cell> 
+        <x-cell>Skelet.css</x-cell> 
+        <x-cell>Skelet.css subgrid</x-cell>
+    </x-cell>
+    <x-cell span=4 x-subgrid><span>Skelet.</span></x-cell>
+    <x-cell span=4 x-subgrid><span>Skelet.</span></x-cell>
+    <x-cell span=6 x-subgrid><span>Skelet.</span></x-cell>
+    <x-cell span=6 x-subgrid><span>Skelet.</span></x-cell>
+</x-grid>
+
+    <hr>
+
+<x-grid columns="5" columns-s="4">
+
+    <x-grid columns="8" span="4">
+        <x-cell span="row" x-subgrid="row" class="header debug">
+            <x-cell span="1">Image</x-cell>
+            <x-cell span="5">Product</x-cell>
+            <x-cell span="2">Action</x-cell>
+        </x-cell>
+
+        <x-cell span="row" x-subgrid class="header debug" >
+            <x-cell span="1">1</x-cell>
+            <x-cell span="5">2</x-cell>
+            <x-cell span="2">3</x-cell>
+        </x-cell>
+    </x-grid>
+
+    <x-cell span="1" class="debug">
+        <button>Gojo</button>
+    </x-cell>
+
+</x-grid>
+
+
+<hr>
+
+
 
     <x-grid columns="8" class="">
         <x-cell span="row" x-subgrid class="header debug">
@@ -248,7 +302,7 @@ x-grid {
             <x-cell></x-cell>
             <x-cell></x-cell>
     
-    
+
     
         </main>
     
