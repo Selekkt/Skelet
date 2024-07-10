@@ -161,6 +161,9 @@ button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-he
 ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 :is([hidden],[type="hidden"],.hidden) {display:none!important;outline:0}
 :is([disabled],[disabled]:hover,.disabled) { filter: grayscale(100%); opacity: 0.7!important; cursor: not-allowed!important; --buttonColor:var(--white); --buttonColorHover: var(--white) }
+:where(html:has(dialog:modal[open])) { overflow: clip }
+:is(dialog, [popover]) { border: none; background: none; color: inherit; inset: unset; max-width: unset; max-height: unset }
+:is(dialog:not([open], [popover]), [popover]:not(:popover-open)) { display: none }
 
 /* ------------------
     basics
@@ -170,7 +173,8 @@ button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-he
 ::selection { background: var(--selectionBg); color: var(--selectionText) }
 ::-moz-selection { background: var(--selectionBg); color: var(--selectionText) }
 
-html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adjust: 100%; scroll-behavior: var(--scrollBehavior, smooth); scroll-padding-top: var(--scrollPadding, auto) }
+html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adjust: 100%; scroll-padding-top: var(--scrollPadding, auto) }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: var(--scrollBehavior, smooth) } }
 body { margin: 0; background: var(--bgColor); color: var(--color); font: var(--fontStyle) var(--fontWeight) var(--fontSize) var(--fontFamily); line-height: var(--fontLine); letter-spacing: var(--fontSpace) }
 
 #app { display: flex; flex-direction: column; min-height: 100vh }
@@ -494,7 +498,7 @@ button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"] {
 
 :where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]):hover { --buttonBg: var(--buttonBgHover); --buttonColor: var(--buttonColorHover); --buttonBorderColor: var(--buttonBorderHover) }
 
-.has-icon { display: inline-flex; align-items: center; justify-content: center; gap: var(--buttonPadding) }
+.has-icon { display: inline-flex; align-items: center; justify-content: center; gap: var(--buttonGap, var(--buttonPadding)) }
 .has-icon i { display: grid; place-items: center; font-size: max(15px, var(--buttonSize)); pointer-events: none }
 .has-icon i > svg { display: inline; height: var(--iconSizeW, var(--iconSize)); width: var(--iconSizeW, var(--iconSize)) }
 
@@ -874,7 +878,7 @@ ul.outside,ol.outside {list-style-position:outside}
 /* ---------------------
   hr - horizontal rules
 --------------------- */
-hr { margin: var(--hrMargin) auto; background-color: var(--hrColor); border: 0 none }
+hr { width: 100%; margin: var(--hrMargin) auto; background-color: var(--hrColor); border: 0 none }
 hr:not([size]) { height: 1px }
 hr.gradient { background-color: transparent; background-image: linear-gradient(to right, var(--hrGradient) 0%, var(--hrColor) 50%, var(--hrGradient) 100%) }
 
@@ -979,7 +983,7 @@ table.has-borders td:not(:last-of-type) { border-inline-end: var(--tableBorder) 
 [columns="1f"] { --grid-tc: repeat(1, minmax(0,1fr)) }
 [columns="1f"] > * { grid-column: 1 / -1 }
 
-[columns="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+[columns="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr; isolation: isolate }
 [columns="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
 [columns="stack"] > *:first-child { z-index: 1 }
 
