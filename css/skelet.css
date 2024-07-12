@@ -1,4 +1,4 @@
-/*! Skelet.css - v5.2.0 | MIT License | (c) 2024 Selekkt. | https://selekkt.dk/skelet/ */
+/*! Skelet.css - v5.5.0 | MIT License | (c) 2024 Selekkt. | https://selekkt.dk/skelet/ */
 
 /* ------------------
     variables
@@ -156,14 +156,14 @@ figcaption { text-align: center; padding: var(--padding); font-size: 0.8em; }
 button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
 [type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}
 [type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0 }
+input[type="number"] { -moz-appearance: textfield }
 [type="search"]{-webkit-appearance:textfield;appearance:textfield;outline-offset:-2px}
 [type="search"]::-webkit-search-decoration{-webkit-appearance:none}
 ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 :is([hidden],[type="hidden"],.hidden) {display:none!important;outline:0}
 :is([disabled],[disabled]:hover,.disabled) { filter: grayscale(100%); opacity: 0.7!important; cursor: not-allowed!important; --buttonColor:var(--white); --buttonColorHover: var(--white) }
 :where(html:has(dialog:modal[open])) { overflow: clip }
-:is(dialog, [popover]) { border: none; background: none; color: inherit; inset: unset; max-width: unset; max-height: unset }
-:is(dialog:not([open], [popover]), [popover]:not(:popover-open)) { display: none }
 
 /* ------------------
     basics
@@ -225,12 +225,12 @@ p { margin:var(--pMargin) }
 blockquote { max-width: 90%; margin: 2rem auto; font-style: italic }
 
 a:not([href]) { cursor: not-allowed }
-a:not(.button,[role="button"]) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto) }
-a:not(.button,[role="button"]):hover { color: var(--linkHover); text-decoration: var(--linkHoverDecoration, auto) }
+a:not(.button,[role="button"]) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto); text-underline-offset: var(--linkDecorationOffset, inherit) }
+a:not(.button,[role="button"]):hover { color: var(--linkHover); text-decoration: var(--linkDecorationHover, auto) }
 
-.all-states a:not(.button,[role="button"]):focus { color: var(--linkFocus, inherit); text-decoration: var(--linkFocusDecoration, auto) }
-.all-states a:not(.button,[role="button"]):active { color: var(--linkActive, inherit); text-decoration: var(--linkActiveDecoration, auto) }
-.all-states a:not(.button,[role="button"]):not(:hover):visited { color: var(--linkVisited, inherit); text-decoration: var(--linkVisitedDecoration, auto) }
+.all-states a:not(.button,[role="button"]):focus { color: var(--linkFocus, inherit); text-decoration: var(--linkDecorationFocus, auto) }
+.all-states a:not(.button,[role="button"]):active { color: var(--linkActive, inherit); text-decoration: var(--linkDecorationActive, auto) }
+.all-states a:not(.button,[role="button"]):not(:hover):visited { color: var(--linkVisited, inherit); text-decoration: var(--linkDecorationVisited, auto) }
 
 a.no-style { text-decoration: none }
 
@@ -242,7 +242,7 @@ a.no-style { text-decoration: none }
 
 
 .visibility-hidden { visibility: hidden }
-.sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
+.sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip-path: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
 .skipTo { position: fixed; z-index: 999; inset-block-start: var(--padding); inset-inline-start: var(--padding) }
 
 /* if JS Active show el w/ .js -- if JS Disabled show el w/ .no-js -- if JS Disabled *hide* el /w .no-js-hidden */
@@ -433,10 +433,11 @@ kbd {
 }
 
 /** Group inputs */
-.stack { 
+x-stack {
     --buttonMargin: auto; 
     --buttonHeight: 100%; 
     --buttonWeight: 400;
+
     display: var(--stackDisplay, inline-flex); 
     justify-content: var(--stackJc, center); 
     align-items: var(--stackAi, center); 
@@ -444,12 +445,14 @@ kbd {
     width: var(--stackWidth, inherit);
     overflow: var(--stackOverflow, initial);
 }
-.stack.no-style > * { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
-.stack.no-style > input:is(:hover,:focus,:active) { border: none }
-.stack:is(.no-style,.presuffix) input:focus { box-shadow: none; outline: none!important; border: none!important }
 
-.stack.presuffix {
+x-stack[no-style] > * { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
+x-stack[no-style] > input:is(:hover,:focus,:active) { border: none }
+x-stack:is([no-style],[presuffix]) input:focus { box-shadow: none; outline: none!important; border: none!important }
+
+x-stack[presuffix] {
     --buttonColor: currentColor;
+
     background: var(--inputBg);
     color: var(--inputColor);
     border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderColor);
@@ -458,12 +461,12 @@ kbd {
     width: var(--inputWidth, auto);
 }
 
-.stack.presuffix:hover { border-color: var(--inputBorderHover); color: var(--inputColorHover); background: var(--inputBgHover) }
-.stack.presuffix:focus-within { border-color: var(--inputBorderActive); color: var(--inputColorActive); background: var(--inputBgActive) }
-.stack.presuffix > * { padding: var(--inputPadding); margin: 0; font-size: var(--stackFontSize, inherit) }
-.stack.presuffix > label { white-space: nowrap; font-weight: normal }
-.stack.presuffix > :where(label,button,span):first-child { border: 0; border-inline-end: inherit }
-.stack.presuffix > :where(label,button,span):last-child { border: 0; border-inline-start: inherit }
+x-stack[presuffix]:hover { border-color: var(--inputBorderHover); color: var(--inputColorHover); background: var(--inputBgHover) }
+x-stack[presuffix]:focus-within { border-color: var(--inputBorderActive); color: var(--inputColorActive); background: var(--inputBgActive) }
+x-stack[presuffix] > * { padding: var(--inputPadding); margin: 0; font-size: var(--stackFontSize, inherit) }
+x-stack[presuffix] > label { white-space: nowrap; font-weight: normal }
+x-stack[presuffix] > :where(label,button,span):first-child { border: 0; border-inline-end: inherit }
+x-stack[presuffix] > :where(label,button,span):last-child { border: 0; border-inline-start: inherit }
 
 /* ------------------
   buttons
@@ -484,9 +487,9 @@ button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"] {
     color: var(--buttonColor);
     text-align: var(--buttonAlign, center);
     text-transform: var(--buttonTextTransform, inherit);
+    text-decoration: var(--buttonDecoration, none);
     white-space: nowrap;
     font-style: inherit;
-    text-decoration: none;
     position: relative;
     display: inline-flex;
     justify-content: var(--buttonAlign, center);
@@ -496,7 +499,7 @@ button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"] {
     user-select: none;
 }
 
-:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]):hover { --buttonBg: var(--buttonBgHover); --buttonColor: var(--buttonColorHover); --buttonBorderColor: var(--buttonBorderHover) }
+:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]):hover { --buttonBg: var(--buttonBgHover); --buttonColor: var(--buttonColorHover); --buttonBorderColor: var(--buttonBorderHover); --buttonDecoration: var(--buttonDecorationHover) }
 
 .has-icon { display: inline-flex; align-items: center; justify-content: center; gap: var(--buttonGap, var(--buttonPadding)) }
 .has-icon i { display: grid; place-items: center; font-size: max(15px, var(--buttonSize)); pointer-events: none }
@@ -663,15 +666,17 @@ input[type="radio"]:checked { --s: .5 }
  * Toggle token
  * */
 .toggle-token, .toggle-token legend { all: unset }
-.toggle-token input:where([type="radio"],[type="checkbox"]) { clip: rect(0,0,0,0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
-
+.toggle-token input:where([type="radio"],[type="checkbox"]) { clip-path: rect(0 0 0 0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
+ 
 .toggle-token {
     --tokenBg: var(--buttonBg);
     --tokenColor: var(--buttonColor);
-    --tokenBorder: var(--buttonBorderColor);
     --tokenRadius: var(--buttonRadius);
     --tokenPadding: var(--buttonPadding);
     --tokenMargin: var(--buttonMargin);
+
+    --tokenBorder: var(--buttonBorderWidth) var(--buttonBorderStyle);
+    --tokenBorderColor: var(--buttonBorderColor);
 
     --tokenBgHover: var(--buttonBgHover);
     --tokenColorHover: var(--buttonColorHover);
@@ -681,7 +686,7 @@ input[type="radio"]:checked { --s: .5 }
     --tokenColorActive: var(--buttonBg);
     --tokenBorderActive: var(--inputBorderActive);
 }
-
+ 
 .toggle-token label,
 .toggle-token input:where([type="radio"],[type="checkbox"]) + label {
     display: var(--tokenDisplay, inline-flex);
@@ -692,33 +697,37 @@ input[type="radio"]:checked { --s: .5 }
     font-weight: var(--tokenFontWeight, 400);
     letter-spacing: var(--tokenSpace, var(--fontSpace));
     line-height: var(--tokenLine, var(--fontLine));
-    border: 1px solid var(--tokenBorder);
+    text-decoration: var(--tokenDecoration);
+    border: var(--tokenBorder) var(--tokenBorderColor);
     border-radius: var(--tokenRadius, 100vw);
     padding: var(--tokenPadding); 
     margin: var(--tokenMargin);
+    user-select: none;
     cursor: pointer;
     position: relative;
 }
-
+ 
 .toggle-token label:where(:hover,:focus,:focus-visible,:focus-within),
 .toggle-token input:where([type="radio"],[type="checkbox"]):hover + label { 
     background: var(--tokenBgHover); 
     color: var(--tokenColorHover); 
-    border-color: var(--tokenBorderHover)
+    border-color: var(--tokenBorderHover);
+    text-decoration: var(--tokenDecorationHover)
 }
-
+ 
 .toggle-token label:has(input:where([type="radio"],[type="checkbox"]):checked),
 .toggle-token input:where([type="radio"],[type="checkbox"]):checked + label { 
     background: var(--tokenBgActive); 
     color: var(--tokenColorActive); 
     border-color: var(--tokenBorderActive); 
-    font-weight: var(--tokenFontWeight)
+    font-weight: var(--tokenFontWeight);
+    text-decoration: var(--tokenDecorationActive);
 }
-
+ 
 .toggle-token label:has(input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled)),
 .toggle-token input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled) + label {
-    filter: grayscale(100%); 
-    cursor: not-allowed; 
+    filter: var(--tokenDisabledFilter, grayscale(100%)); 
+    cursor: not-allowed;
     opacity: var(--tokenOpacity, 0.3);
     text-decoration: var(--tokenTextDec, line-through);
     pointer-events: none;
@@ -949,7 +958,7 @@ table.has-borders td:not(:last-of-type) { border-inline-end: var(--tableBorder) 
   css grid
 ------------------ */
 x-grid,[x-grid] { 
-    --grid-mm: 0, 1fr; /* MinMax */
+    --grid-mm: 0px, 1fr; /* MinMax */
     --grid-tc-ln: 4; /* Template Columns Line Name/Number */
     --grid-tc: repeat(var(--grid-tc-ln), minmax(var(--grid-mm))); /* Template Columns */
     --grid-cs: 1; /* Column Start */
@@ -982,11 +991,14 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 [columns="12"] { --grid-tc-ln: 12 }
 
 [columns="fit"] { --grid-tc-ln: auto-fit }
-[columns="fill"] { --grid-tc-ln: auto-fill }
-
+[columns="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 50px 1fr }
 [columns="1f"] { --grid-tc-ln: 1 }
 [columns="1f"] > * { grid-column: 1 / -1 }
-    
+
+[columns="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+[columns="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+[columns="stack"] > *:first-child { z-index: 1 }
+
 /*** Grid Column - X axis */
 [span^="1"] { --grid-cs: 1 }
 [span^="2"] { --grid-cs: 2 }
@@ -1071,9 +1083,12 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     [columns-s="11"] { --grid-tc-ln: 11 }
     [columns-s="12"] { --grid-tc-ln: 12 }
     [columns-s="fit"] { --grid-tc-ln: auto-fit }
-    [columns-s="fill"] { --grid-tc-ln: auto-fill }
+    [columns-s="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 50px 1fr }
     [columns-s="1f"] { --grid-tc-ln: 1 }
     [columns-s="1f"] > * { grid-column: 1 / -1 }
+    [columns-s="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+    [columns-s="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+    [columns-s="stack"] > *:first-child { z-index: 1 }
         
     /*** Grid Column - X axis */
     [span-s^="1"] { --grid-cs: 1 }
@@ -1161,9 +1176,12 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     [columns-m="11"] { --grid-tc-ln: 11 }
     [columns-m="12"] { --grid-tc-ln: 12 }
     [columns-m="fit"] { --grid-tc-ln: auto-fit }
-    [columns-m="fill"] { --grid-tc-ln: auto-fill }
+    [columns-m="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 50px 1fr }
     [columns-m="1f"] { --grid-tc-ln: 1 }
     [columns-m="1f"] > * { grid-column: 1 / -1 }
+    [columns-m="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
+    [columns-m="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+    [columns-m="stack"] > *:first-child { z-index: 1 }
         
     /*** Grid Column - X axis */
     [span-m^="1"] { --grid-cs: 1 }
@@ -1241,7 +1259,6 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 /*  Flex Container */
 :where(x-flex,[x-flex]) { --jsDisplay: flex; display: flex; gap: var(--rowGap, 1rem) var(--columnGap, 1rem) }
 :where(x-flex,[x-flex]) > * { flex: 0 1 auto; width: auto; appearance: none }
-:where(x-flex,[x-flex]) .fullflex { flex: 1 1 auto }
 :where(x-flex,[x-flex]).even > * { width: 100% }
 :where(x-flex,[x-flex]) img { object-fit: contain; max-width: 100% }
 :where(x-flex,[x-flex]) x-cell:has(svg) { flex-shrink: 0 } /* preventing svg from being cropped */
@@ -1259,6 +1276,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 
 /* Flex span */
 :where(x-flex,[x-flex]) > [span] { flex: var(--grid-cs) }
+:where(x-flex,[x-flex]) > [span="full"] { flex: 1 1 auto } /* full flex */
 :where(x-flex,[x-flex]) > [span="row"] { flex-basis: 100% } /* wrap=wrap to function! */
 
 /* for window width <= 777px */
