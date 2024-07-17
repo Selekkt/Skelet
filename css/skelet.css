@@ -1,4 +1,4 @@
-/*! Skelet.css - v5.5.0 | MIT License | (c) 2024 Selekkt. | https://selekkt.dk/skelet/ */
+/*! Skelet.css - v6.0.0 | MIT License | (c) 2024 Selekkt. | https://selekkt.dk/skelet/ */
 
 /* ------------------
     variables
@@ -25,7 +25,7 @@
     --color: #000;
     --colorInverse: #FFF;
 
-    --selectionBg: rgb(0 0 0 / .90);
+    --selectionBg: rgb(0 0 0 / .8);
     --selectionText: #FFF;
 
     --codeBg: #F8F8F8;
@@ -87,21 +87,21 @@
     --inputBgHover: var(--inputBg);
     --inputBgActive: var(--inputBg);
     --inputColor: var(--color);
-    --inputPlaceholderColor: rgba(0,0,0,.4);
+    --inputPlaceholderColor: rgb(0 0 0 / .4);
     --inputBorderColor: #E1E1E1;
     --inputBorderHover: #BABABA;
     --inputBorderActive: var(--primary);
 
-    --inputShadow: 0 0 0 0 rgba(0,0,0,0);
+    --inputShadow: 0 0 0 0 rgb(0 0 0 / 0);
 
     /* checkbox/radio/role=switch */
     --inputActive: var(--primary);
     --inputActiveInner: var(--white);
-    --inputFocus: rgba(41, 145, 248, .7);
+    --inputFocus: rgb(41 145 248 / .7);
 
     /* buttons */
-    --buttonPadding: var(--inputPadding);
-    --buttonMargin: var(--inputMargin);
+    --buttonPadding: var(--space-3);
+    --buttonMargin: var(--space-1);
     --buttonRadius: var(--radius);
     --buttonBorderWidth: var(--borderWidth);
     --buttonBorderStyle: var(--borderStyle);
@@ -115,7 +115,7 @@
     --buttonColorHover: var(--buttonColor);
     --buttonBorderColor: transparent;
     --buttonBorderHover: transparent;
-    --buttonShadow: 0 0 0 0 rgba(0,0,0,0);
+    --buttonShadow: 0 0 0 0 rgb(0 0 0 / 0);
     --iconSize: var(--fontSize);
 
     /* grids */
@@ -139,19 +139,19 @@
     --inputBorderHover: #444;
     --inputActive: var(--primary);
     --inputColor: var(--color);
-    --inputPlaceholderColor: rgba(255,255,255,.4);
+    --inputPlaceholderColor: rgb(255 255 255 / .4);
 
     --buttonBorderColor: transparent;
     --buttonBorderHover: transparent;
 
-    --selectionBg: rgba(255,255,255,.99);
+    --selectionBg: rgb(255 255 255 / .8);
     --selectionText: #000;
 
     --codeColor: var(--green);
     --codeBg: #111;
 
     --hrColor: var(--inputBorderColor);
-    --hrGradient: rgba(0, 0, 0, 0);
+    --hrGradient: rgb(0 0 0 / 0);
 }
 
 /* ------------------
@@ -671,8 +671,8 @@ input[type="range"] { height: 2.5rem; margin: 1rem 0; width: 100%; background: t
 input[type="range"]::-moz-range-track              { width: 100%; height: 0.5rem; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
 input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 0.5rem; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
 
-input[type="range"]::-moz-range-thumb     { border: 1px solid rgba(0,0,0,.5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
-input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0,0,0,.5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
+input[type="range"]::-moz-range-thumb     { border: 1px solid rgb(0 0 0 / .5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
+input[type="range"]::-webkit-slider-thumb { border: 1px solid rgb(0 0 0 / .5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
 
 textarea { min-height: 6.5rem; padding: var(--inputPadding); border-radius: var(--textareaRadius, var(--inputRadius)) }
 textarea.resize-vertical { resize: vertical }
@@ -798,15 +798,15 @@ input[type="radio"]:checked { --s: .5 }
 /**** 
  * Toggle token
  * */
-.toggle-token, .toggle-token legend { all: unset }
-.toggle-token input:where([type="radio"],[type="checkbox"]) { clip: rect(0 0 0 0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
- 
-.toggle-token {
+:root {
     --tokenBg: var(--buttonBg);
     --tokenColor: var(--buttonColor);
     --tokenRadius: var(--buttonRadius);
     --tokenPadding: var(--buttonPadding);
     --tokenMargin: var(--buttonMargin);
+    --tokenLine: var(--fontLine);
+    --tokenSpace: var(--fontSpace);
+    --tokenWeight: var(--buttonWeight);
 
     --tokenBorder: var(--buttonBorderWidth) var(--buttonBorderStyle);
     --tokenBorderColor: var(--buttonBorderColor);
@@ -820,6 +820,9 @@ input[type="radio"]:checked { --s: .5 }
     --tokenBorderActive: var(--inputBorderActive);
 }
 
+.toggle-token, .toggle-token legend { all: unset }
+.toggle-token input:where([type="radio"],[type="checkbox"]) { clip: rect(0 0 0 0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
+ 
 .toggle-token legend { display: var(--tokenLegend, none) }
  
 .toggle-token label,
@@ -829,13 +832,13 @@ input[type="radio"]:checked { --s: .5 }
     background: var(--tokenBg);
     color: var(--tokenColor);
     font-size: inherit;
-    font-weight: var(--tokenFontWeight, 400);
-    letter-spacing: var(--tokenSpace, var(--fontSpace));
-    line-height: var(--tokenLine, var(--fontLine));
-    text-decoration: var(--tokenDecoration);
     text-wrap: nowrap;
+    font-weight: var(--tokenWeight);
+    letter-spacing: var(--tokenSpace);
+    line-height: var(--tokenLine);
+    text-decoration: var(--tokenDecoration);
     border: var(--tokenBorder) var(--tokenBorderColor);
-    border-radius: var(--tokenRadius, 100vw);
+    border-radius: var(--tokenRadius);
     padding: var(--tokenPadding); 
     margin: var(--tokenMargin);
     user-select: none;
@@ -848,7 +851,7 @@ input[type="radio"]:checked { --s: .5 }
     background: var(--tokenBgHover); 
     color: var(--tokenColorHover); 
     border-color: var(--tokenBorderHover);
-    text-decoration: var(--tokenDecorationHover)
+    text-decoration: var(--tokenDecorationHover);
 }
  
 .toggle-token label:has(input:where([type="radio"],[type="checkbox"]):checked),
@@ -856,7 +859,7 @@ input[type="radio"]:checked { --s: .5 }
     background: var(--tokenBgActive); 
     color: var(--tokenColorActive); 
     border-color: var(--tokenBorderActive); 
-    font-weight: var(--tokenFontWeight);
+    font-weight: var(--tokenWeight);
     text-decoration: var(--tokenDecorationActive);
 }
  
@@ -2039,13 +2042,13 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 }
 
 /* Debug */
-.debug > * { --dc:rgba(248,110,91,0.8); background: var(--dc) }
-.debug>:nth-child(6n+2){ --dc:rgb(103,126,208,.8) }
-.debug>:nth-child(6n+3){ --dc:rgb(224,174,72,0.8) }
-.debug>:nth-child(6n+4){ --dc:rgb(77,214,115,0.8) }
-.debug>:nth-child(6n+5){ --dc:rgb(217,103,219,0.8) }
-.debug>:nth-child(6n+6){ --dc:rgb(94,204,211,0.8) }
-.debug>:nth-child(6n+7){ --dc:rgb(248,110,91,0.8) }
+.debug > * { --dc:rgb(248 110 91 / 0.8); background: var(--dc) }
+.debug>:nth-child(6n+2){ --dc:rgb(103 126 208 / 0.8) }
+.debug>:nth-child(6n+3){ --dc:rgb(224 174 72 / 0.8) }
+.debug>:nth-child(6n+4){ --dc:rgb(77 214 115 / 0.8) }
+.debug>:nth-child(6n+5){ --dc:rgb(217 103 219 / 0.8) }
+.debug>:nth-child(6n+6){ --dc:rgb(94 204 211 / 0.8) }
+.debug>:nth-child(6n+7){ --dc:rgb(248 110 91 / 0.8) }
 .debug.outline { outline: 1px dotted var(--red) }
 .debug.outline-child { outline: 1px dotted var(--red); outline-offset: 0.5rem }
 .debug.outline-child > * { outline: 1px dotted var(--green) }
