@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> <!-- browse the icons: https://fontawesome.com/icons?d=listing&m=free -->
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="../css/skelet.css">
+
+<style>
+:root {
+
+    /* Spacing system */
+    /* --_sBase: 1rem;
+    --_sScale:  var(--globalScale);
+
+    --space-01: clamp(var(--_sBase) * 1, 0.5vw + 0.1rem, var(--_sBase) * var(--_sScale) * 1);
+    --space-02: clamp(var(--_sBase) * 2, 1vw + 0.2rem, var(--_sBase) * var(--_sScale) * 2);
+    --space-03: clamp(var(--_sBase) * 3, 1.5vw + 0.3rem, var(--_sBase) * var(--_sScale) * 3);
+    --space-04: clamp(var(--_sBase) * 4, 2vw + 0.4rem, var(--_sBase) * var(--_sScale) * 4);
+    --space-05: clamp(var(--_sBase) * 5, 2.5vw + 0.5rem, var(--_sBase) * var(--_sScale) * 5);
+    --space-06: clamp(var(--_sBase) * 6, 3vw + 0.6rem, var(--_sBase) * var(--_sScale) * 6);
+    --space-07: clamp(var(--_sBase) * 7, 3.5vw + 0.7rem, var(--_sBase) * var(--_sScale) * 7);
+    --space-08: clamp(var(--_sBase) * 8, 4vw + 0.8rem, var(--_sBase) * var(--_sScale) * 8);
+    --space-09: clamp(var(--_sBase) * 9, 4.5vw + 0.9rem, var(--_sBase) * var(--_sScale) * 9);
+    --space-10: clamp(var(--_sBase) * 10, 5vw + 1rem, var(--_sBase) * var(--_sScale) * 10); */
+
+/* Base size is already set to 62.5%, so 1rem = 10px */  
+/* Breakpoints */
+--bp-mobile-max: 77.7rem;  /* 777px */
+--bp-desktop-min: 102.4rem; /* 1024px */
+
+--space-01: 0.4rem;   /* 4px */
+--space-02: 0.8rem;   /* 8px */
+--space-03: 1.2rem;   /* 12px */
+--space-04: 1.6rem;   /* 16px */
+--space-05: 2.4rem;   /* 24px */
+--space-06: 3.2rem;   /* 32px */
+--space-07: clamp(4rem, 4rem + ((1vw - 7.77rem) * 3.2258), 4.8rem);
+--space-08: clamp(4.8rem, 4.8rem + ((1vw - 7.77rem) * 6.4516), 6.4rem);
+--space-09: clamp(6.4rem, 6.4rem + ((1vw - 7.77rem) * 12.9032), 9.6rem);
+--space-10: clamp(8rem, 8rem + ((1vw - 7.77rem) * 19.3548), 12.8rem);
+--space-11: clamp(9.6rem, 9.6rem + ((1vw - 7.77rem) * 38.7097), 19.2rem);
+--space-12: clamp(11.2rem, 11.2rem + ((1vw - 7.77rem) * 58.0645), 25.6rem);
+
+
+/* 
+
+0.25rem
+0.50rem
+0.75rem
+1rem
+1.5rem
+2rem
+3rem
+4rem
+6rem
+8rem
+12rem
+16rem
+
+
+0.25rem
+0.50rem
+0.75rem
+1rem
+1.5rem
+2rem
+2.5rem
+3.5rem
+4.5rem
+5.5rem
+7.5rem
+9.5rem
+
+
+0.25 rem
+0.50 rem
+0.75 rem
+1rem
+1.5rem
+2rem
+-
+2.5rem
+3rem
+4rem
+5rem
+6rem
+7rem 
+*/
+
+
+}
+
+.s1 { margin-inline-start: var(--space-01); padding: var(--space-01) }
+.s2 { margin-inline-start: var(--space-02); padding: var(--space-02) }
+.s3 { margin-inline-start: var(--space-03); padding: var(--space-03) }
+.s4 { margin-inline-start: var(--space-04); padding: var(--space-04) }
+.s5 { margin-inline-start: var(--space-05); padding: var(--space-05) }
+.s6 { margin-inline-start: var(--space-06); padding: var(--space-06) }
+.s7 { margin-inline-start: var(--space-07); padding: var(--space-07) }
+.s8 { margin-inline-start: var(--space-08); padding: var(--space-08) }
+.s9 { margin-inline-start: var(--space-09); padding: var(--space-09) }
+.s10 { margin-inline-start: var(--space-10); padding: var(--space-10) }
+.s11 { margin-inline-start: var(--space-11); padding: var(--space-11) }
+.s12 { margin-inline-start: var(--space-12); padding: var(--space-12) }
+
+div { background-color: red }
+
+:root {
+  /* Breakpoints (same as spacing system) */
+  --bp-mobile-max: 77.7rem;  /* 777px */
+  --bp-tablet-min: 77.7rem;  /* 777px */
+  --bp-tablet-max: 102.4rem; /* 1024px */
+  --bp-desktop-min: 102.4rem; /* 1024px */
+
+  /* Heading scale factor */
+  --hScale: 1;
+
+  /* Responsive heading sizes */
+  --h1-size: clamp(3.1rem, 3.1rem + ((1vw - 7.77rem) * 6.4516), 4.7rem);
+  --h2-size: clamp(2.7rem, 2.7rem + ((1vw - 7.77rem) * 3.6290), 3.6rem);
+  --h3-size: clamp(2.4rem, 2.4rem + ((1vw - 7.77rem) * 2.8226), 3.1rem);
+  --h4-size: clamp(2.2rem, 2.2rem + ((1vw - 7.77rem) * 1.2097), 2.5rem);
+  --h5-size: clamp(2rem, 2rem + ((1vw - 7.77rem) * 1.2097), 2.3rem);
+  --h6-size: clamp(1.6rem, 1.6rem + ((1vw - 7.77rem) * 0.8065), 1.8rem);
+}
+
+/* Apply heading sizes */
+.xh1 { font-size: calc(var(--hScale) * var(--h1-size)); }
+.xh2 { font-size: calc(var(--hScale) * var(--h2-size)); }
+.xh3 { font-size: calc(var(--hScale) * var(--h3-size)); }
+.xh4 { font-size: calc(var(--hScale) * var(--h4-size)); }
+.xh5 { font-size: calc(var(--hScale) * var(--h5-size)); }
+.xh6 { font-size: calc(var(--hScale) * var(--h6-size)); }
+</style>
+
+</head>
+<body class="a11y" style="padding:2rem">
+
+    <header></header>
+    <main>
+
+    <div class="s1"><h1>Skelet.css</h1></div>
+    <div class="s2"><h2>Skelet.css</h2></div>
+    <div class="s3"><h3>Skelet.css</h3></div>
+    <div class="s4"><h4>Skelet.css</h4></div>
+    <div class="s5"><h5>Skelet.css</h5></div>
+    <div class="s6"><h6>Skelet.css</h6></div>
+    <div class="s7"><h6>Skelet.css</h6></div>
+    <div class="s8"><h6>Skelet.css</h6></div>
+    <div class="s9"><h6>Skelet.css</h6></div>
+    <div class="s10"><h6>Skelet.css</h6></div>
+
+    <x-flex>
+        <x-cell>
+            <h1 class="xh1">heading 1</h1>
+            <h2 class="xh2">heading 2</h2>
+            <h3 class="xh3">heading 3</h3>
+            <h4 class="xh4">heading 4</h4>
+            <h5 class="xh5">heading 5</h5>
+            <h6 class="xh6">heading 6</h6>
+        </x-cell>
+        <x-cell>
+            <h1>heading 1</h1>
+            <h2>heading 2</h2>
+            <h3>heading 3</h3>
+            <h4>heading 4</h4>
+            <h5>heading 5</h5>
+            <h6>heading 6</h6>
+        </x-cell>
+    </x-flex>
+
+    </main>
+    <footer></footer>
+
+</body>
+</html>

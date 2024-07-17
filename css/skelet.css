@@ -51,25 +51,37 @@
     --fontWeight: 400;
     --fontStyle: normal;
 
-    --hScale: var(--globalScale);
+    /* Space System */
+    --space-1: 0.4rem; /* 4px */
+    --space-2: 0.8rem; /* 8px */
+    --space-3: 1.2rem; /* 12px */
+    --space-4: 1.6rem; /* 16px */
+    --space-5: 2.4rem; /* 24px */
+    --space-6: 3.2rem; /* 32px */
+    --space-7: clamp(4rem, 4rem + ((1vw - 7.77rem) * 3.2258), 4.8rem);
+    --space-8: clamp(4.8rem, 4.8rem + ((1vw - 7.77rem) * 6.4516), 6.4rem);
+    --space-9: clamp(6.4rem, 6.4rem + ((1vw - 7.77rem) * 12.9032), 9.6rem);
+    --space-10: clamp(8rem, 8rem + ((1vw - 7.77rem) * 19.3548), 12.8rem);
+    --space-11: clamp(9.6rem, 9.6rem + ((1vw - 7.77rem) * 38.7097), 19.2rem);
+    --space-12: clamp(11.2rem, 11.2rem + ((1vw - 7.77rem) * 58.0645), 25.6rem);
 
     /* other */
-    --padding: 1rem;
-    --margin: 1.5rem;
-    --radius: .75rem;
+    --padding: var(--space-3);
+    --margin: var(--space-4);
+    --radius: var(--space-3);
     --borderWidth: 1px;
     --borderStyle: solid;
     --hrMargin: var(--margin);
     --pMargin: var(--margin) 0;
 
     /* input/textarea/tables etc. */
-    --inputPadding: .7em;
-    --inputMargin: 2px;
+    --inputPadding: var(--space-3);
+    --inputMargin: var(--space-1);
     --inputRadius: var(--radius);
     --inputBorderWidth: var(--borderWidth);
     --inputBorderStyle: var(--borderStyle);
     --inputFontSize: inherit;
-    --inputHeight: 21px;
+    --inputHeight: var(--space-5);
 
     --inputBg: #F8F8F8;
     --inputBgHover: var(--inputBg);
@@ -88,7 +100,7 @@
     --inputFocus: rgba(41, 145, 248, .7);
 
     /* buttons */
-    --buttonPadding: 1.3rem;
+    --buttonPadding: var(--inputPadding);
     --buttonMargin: var(--inputMargin);
     --buttonRadius: var(--radius);
     --buttonBorderWidth: var(--borderWidth);
@@ -107,8 +119,9 @@
     --iconSize: var(--fontSize);
 
     /* grids */
-    --columnGap: 1rem;
-    --rowGap: 1rem;
+    --rowGap: var(--space-3);
+    --columnGap: var(--space-3);
+    --gap: var(--rowGap) var(--columnGap);
 }
 
 /*** Dark Mode */
@@ -191,21 +204,22 @@ main { flex: 1 }
     --hColor: currentColor;
     --hMargin: 0 0 0.65em;
     --hTextWrap: balance;
+    --hScale: var(--globalScale);
 
-    --h1Size: clamp(calc(var(--hScale) * var(--h1SizeMin, 3.1rem)), calc(var(--hScale) * var(--h1Val, 1.6vw + 2.7rem)), calc(var(--hScale) * var(--h1SizeMax, 4rem)));
-    --h2Size: clamp(calc(var(--hScale) * var(--h2SizeMin, 2.7rem)), calc(var(--hScale) * var(--h2Val, 0.9vw + 2.5rem)), calc(var(--hScale) * var(--h2SizeMax, 3.2rem)));
-    --h3Size: clamp(calc(var(--hScale) * var(--h3SizeMin, 2.4rem)), calc(var(--hScale) * var(--h3Val, 0.7vw + 2.2rem)), calc(var(--hScale) * var(--h3SizeMax, 2.8rem)));
-    --h4Size: clamp(calc(var(--hScale) * var(--h4SizeMin, 2.2rem)), calc(var(--hScale) * var(--h4Val, 0.3vw + 2.1rem)), calc(var(--hScale) * var(--h4SizeMax, 2.4rem)));
-    --h5Size: clamp(calc(var(--hScale) * var(--h5SizeMin, 2rem)),   calc(var(--hScale) * var(--h5Val, 0.3vw + 1.9rem)), calc(var(--hScale) * var(--h5SizeMax, 2.2rem)));
-    --h6Size: clamp(calc(var(--hScale) * var(--h6SizeMin, 1.6rem)), calc(var(--hScale) * var(--h6Val, 0.2vw + 1.6rem)), calc(var(--hScale) * var(--h6SizeMax, 1.7rem)));
+    --h1Size: clamp(3.1rem, 3.1rem + ((1vw - 7.77rem) * 6.4516), 4.7rem);
+    --h2Size: clamp(2.7rem, 2.7rem + ((1vw - 7.77rem) * 3.6290), 3.6rem);
+    --h3Size: clamp(2.4rem, 2.4rem + ((1vw - 7.77rem) * 2.8226), 3.1rem);
+    --h4Size: clamp(2.2rem, 2.2rem + ((1vw - 7.77rem) * 1.2097), 2.5rem);
+    --h5Size: clamp(2rem, 2rem + ((1vw - 7.77rem) * 1.2097), 2.3rem);
+    --h6Size: clamp(1.6rem, 1.6rem + ((1vw - 7.77rem) * 0.8065), 1.8rem);
 }
 
-h1,.h1 { font-size: var(--hSize, var(--h1Size)); line-height: var(--h1Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h1Space, var(--hSpace)) }
-h2,.h2 { font-size: var(--hSize, var(--h2Size)); line-height: var(--h2Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h2Space, var(--hSpace)) }
-h3,.h3 { font-size: var(--hSize, var(--h3Size)); line-height: var(--h3Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h3Space, var(--hSpace)) }
-h4,.h4 { font-size: var(--hSize, var(--h4Size)); line-height: var(--h4Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h4Space, var(--hSpace)) }
-h5,.h5 { font-size: var(--hSize, var(--h5Size)); line-height: var(--h5Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h5Space, var(--hSpace)) }
-h6,.h6 { font-size: var(--hSize, var(--h6Size)); line-height: var(--h6Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h6Space, var(--hSpace)) }
+h1,.h1 { font-size: calc(var(--hScale) * var(--hSize, var(--h1Size))); line-height: var(--h1Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h1Space, var(--hSpace)) }
+h2,.h2 { font-size: calc(var(--hScale) * var(--hSize, var(--h2Size))); line-height: var(--h2Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h2Space, var(--hSpace)) }
+h3,.h3 { font-size: calc(var(--hScale) * var(--hSize, var(--h3Size))); line-height: var(--h3Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h3Space, var(--hSpace)) }
+h4,.h4 { font-size: calc(var(--hScale) * var(--hSize, var(--h4Size))); line-height: var(--h4Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h4Space, var(--hSpace)) }
+h5,.h5 { font-size: calc(var(--hScale) * var(--hSize, var(--h5Size))); line-height: var(--h5Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h5Space, var(--hSpace)) }
+h6,.h6 { font-size: calc(var(--hScale) * var(--hSize, var(--h6Size))); line-height: var(--h6Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h6Space, var(--hSpace)) }
 
 h1,h2,h3,h4,h5,h6, 
 .h1,.h2,.h3,.h4,.h5,.h6,.hx { 
@@ -222,7 +236,7 @@ h1,h2,h3,h4,h5,h6,
 .hx { --hTextWrap: inherit; --hMargin: 0; font-size: var(--hxSize, inherit); line-height: var(--hxLine, var(--hLine, var(--fontLine))); letter-spacing: var(--hxSpace, var(--hSpace)) }
 
 p { margin:var(--pMargin) }
-blockquote { max-width: 90%; margin: 2rem auto; font-style: italic }
+blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic }
 
 a:not([href]) { cursor: not-allowed }
 a:not(.button,[role="button"]) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto); text-underline-offset: var(--linkDecorationOffset, inherit) }
@@ -240,9 +254,8 @@ a.no-style { text-decoration: none }
 .a11y-inputs-off :where(select,input,textarea):focus-visible { outline: 0; box-shadow: none }
 .a11y-custom :where(*,a):focus-visible { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: 2px solid transparent; outline-offset: var(--a11yOffset, 2px) }
 
-
 .visibility-hidden { visibility: hidden }
-.sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip-path: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
+.sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
 .skipTo { position: fixed; z-index: 999; inset-block-start: var(--padding); inset-inline-start: var(--padding) }
 
 /* if JS Active show el w/ .js -- if JS Disabled show el w/ .no-js -- if JS Disabled *hide* el /w .no-js-hidden */
@@ -264,7 +277,7 @@ code, samp {
 }
 
 code:hover { overflow:auto }
-pre > code { display: block; padding: calc(var(--inputPadding) * 1); white-space: pre }
+pre > code { display: block; padding: var(--inputPadding); white-space: pre }
 
 kbd {
     display: inline-block;
@@ -559,180 +572,6 @@ button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"] {
 
 .is-blue:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]):not(.is-outline) { --buttonColor: var(--white) }
 
-/** Radio checkbox switch */
-input[type="checkbox"],
-input[type="radio"] {
-    -webkit-appearance: none;
-    appearance: none;
-    height: var(--inputHeight);
-    width: var(--inputHeight);
-    aspect-ratio: 1 / 1;
-    outline: none;
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    margin: 0;
-    cursor: pointer;
-    border: 1px solid var(--bc, var(--inputBorderColor));
-    background: var(--b, var(--inputBgColor));
-}
-
-input[type="checkbox"]:after,
-input[type="radio"]:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: opacity var(--d-o, 0.2s), transform var(--d-t, 0.3s) var(--d-t-e, ease);
-}
-
-input[type="checkbox"]:checked,
-input[type="radio"]:checked {
-    --b: var(--inputActive);
-    --bc: var(--inputActive);
-    --d-o: 100ms;
-    --d-t: 250ms;
-    --d-t-e: ease-in-out;
-}
-
-/* Disabled */
-input[type="checkbox"]:disabled,input[type="radio"]:disabled { filter: grayscale(100%); cursor: not-allowed; opacity: .7 }
-input[type="checkbox"]:disabled:checked,input[type="radio"]:disabled:checked { filter: grayscale(100%) }
-input[type="checkbox"]:disabled + label, input[type="radio"]:disabled + label { cursor: not-allowed }
-
-input[type="checkbox"]:hover:not(:checked):not(:disabled),
-input[type="radio"]:hover:not(:checked):not(:disabled) { --bc: var(--inputBorderHover) }
-
-input[type="checkbox"]:focus, input[type="radio"]:focus { box-shadow: 0 0 0 2px var(--inputFocus) }  
-input[type="checkbox"]:not([role="switch"]):after, input[type="radio"]:not([role="switch"]):after { opacity: var(--o, 0) }  
-input[type="checkbox"]:not([role="switch"]):checked, input[type="radio"]:not([role="switch"]):checked { --o: 1 }
-  
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-    font-size: 1.4rem;
-    line-height: var(--inputHeight);
-    display: inline-block;
-    vertical-align: top;
-    cursor: pointer;
-    margin-inline-start: 4px;
-    user-select: none;
-}
-
-input[type="checkbox"]:not([role="switch"]) { border-radius: 3px }
-
-input[type="checkbox"]:not([role="switch"]):after {
-    width: 5px;
-    height: 9px;
-    border: 1px solid var(--inputActiveInner);
-    border-block-start: 0;
-    border-inline-start: 0;
-    left: 7px;
-    top: 4.5px;
-    transform: rotate(43deg);
-}
-
-/* Switch */
-input[type="checkbox"][role="switch"] { width: 38px; border-radius: 11px }
-
-input[type="checkbox"][role="switch"]:after {
-    left: 2px;
-    top: 2px;
-    border-radius: 100vw;
-    width: 15px;
-    height: 15px;
-    background: var(--ab, var(--primary));
-    transform: translateX(var(--x, 0));
-}
-
-input[type="checkbox"][role="switch"]:checked { --ab: var(--inputActiveInner); --x: 17px }
-input[type="checkbox"][role="switch"]:disabled:not(:checked):after { opacity: .7 }
-
-/* Radio */
-input[type="radio"] { border-radius: 100vw }
-
-input[type="radio"]:after {
-    width: 19px;
-    height: 19px;
-    border-radius: 100vw;
-    background: var(--inputActiveInner);
-    opacity: 0;
-    transform: scale(var(--s, 0.7));
-}
-
-input[type="radio"]:checked { --s: .5 }
-
-/**** 
- * Toggle token
- * */
-.toggle-token, .toggle-token legend { all: unset }
-.toggle-token input:where([type="radio"],[type="checkbox"]) { clip-path: rect(0 0 0 0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
- 
-.toggle-token {
-    --tokenBg: var(--buttonBg);
-    --tokenColor: var(--buttonColor);
-    --tokenRadius: var(--buttonRadius);
-    --tokenPadding: var(--buttonPadding);
-    --tokenMargin: var(--buttonMargin);
-
-    --tokenBorder: var(--buttonBorderWidth) var(--buttonBorderStyle);
-    --tokenBorderColor: var(--buttonBorderColor);
-
-    --tokenBgHover: var(--buttonBgHover);
-    --tokenColorHover: var(--buttonColorHover);
-    --tokenBorderHover: var(--buttonBorderHover);
-
-    --tokenBgActive: var(--buttonColor);
-    --tokenColorActive: var(--buttonBg);
-    --tokenBorderActive: var(--inputBorderActive);
-}
- 
-.toggle-token label,
-.toggle-token input:where([type="radio"],[type="checkbox"]) + label {
-    display: var(--tokenDisplay, inline-flex);
-    flex-direction: var(--tokenDirection, row);
-    background: var(--tokenBg);
-    color: var(--tokenColor);
-    font-size: inherit;
-    font-weight: var(--tokenFontWeight, 400);
-    letter-spacing: var(--tokenSpace, var(--fontSpace));
-    line-height: var(--tokenLine, var(--fontLine));
-    text-decoration: var(--tokenDecoration);
-    border: var(--tokenBorder) var(--tokenBorderColor);
-    border-radius: var(--tokenRadius, 100vw);
-    padding: var(--tokenPadding); 
-    margin: var(--tokenMargin);
-    user-select: none;
-    cursor: pointer;
-    position: relative;
-}
- 
-.toggle-token label:where(:hover,:focus,:focus-visible,:focus-within),
-.toggle-token input:where([type="radio"],[type="checkbox"]):hover + label { 
-    background: var(--tokenBgHover); 
-    color: var(--tokenColorHover); 
-    border-color: var(--tokenBorderHover);
-    text-decoration: var(--tokenDecorationHover)
-}
- 
-.toggle-token label:has(input:where([type="radio"],[type="checkbox"]):checked),
-.toggle-token input:where([type="radio"],[type="checkbox"]):checked + label { 
-    background: var(--tokenBgActive); 
-    color: var(--tokenColorActive); 
-    border-color: var(--tokenBorderActive); 
-    font-weight: var(--tokenFontWeight);
-    text-decoration: var(--tokenDecorationActive);
-}
- 
-.toggle-token label:has(input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled)),
-.toggle-token input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled) + label {
-    filter: var(--tokenDisabledFilter, grayscale(100%)); 
-    cursor: not-allowed;
-    opacity: var(--tokenOpacity, 0.3);
-    text-decoration: var(--tokenTextDec, line-through);
-    pointer-events: none;
-}
-
 /* ------------------
   forms
 ------------------ */
@@ -825,15 +664,15 @@ textarea:focus {
 
 input[type="color"] { height:4rem; min-width:6em; padding:calc(.25rem - 1px) 0.5rem; display:block; width:auto; cursor:pointer }
 
-input[type="file"] { --inputBorderWidth: 2px; --inputBorderStyle: dashed; display:block; padding: 0; line-height: 2.4; cursor:pointer; width: fit-content; height: auto }
+input[type="file"] { --inputBorderWidth: 0.2rem; --inputBorderStyle: dashed; display:block; padding: 0; line-height: 2.4; cursor:pointer; width: fit-content; height: auto }
 input[type="file"]::file-selector-button { border: 0; border-inline-end: 1px solid var(--inputBorderColor); padding: .2em .4em; margin-inline-end: var(--padding); border-radius: 0; background: var(--inputBgActive); color: currentColor; display: inline-block; height: 100% }
 
-input[type="range"] { height: 25px; margin: 10px 0; width: 100%; background: transparent; -webkit-appearance: none; appearance: none }
-input[type="range"]::-moz-range-track              { width: 100%; height: 5px; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
-input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 5px; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
+input[type="range"] { height: 2.5rem; margin: 1rem 0; width: 100%; background: transparent; -webkit-appearance: none; appearance: none }
+input[type="range"]::-moz-range-track              { width: 100%; height: 0.5rem; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
+input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 0.5rem; cursor: pointer; transition: all 0.2s ease-in-out; background: var(--primary); border-radius: 100vw }
 
-input[type="range"]::-moz-range-thumb     { border: 1px solid rgba(0,0,0,.5); height: 18px; width: 18px; border-radius: 25px; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -7px }
-input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0,0,0,.5); height: 18px; width: 18px; border-radius: 25px; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -7px }
+input[type="range"]::-moz-range-thumb     { border: 1px solid rgba(0,0,0,.5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
+input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0,0,0,.5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
 
 textarea { min-height: 6.5rem; padding: var(--inputPadding); border-radius: var(--textareaRadius, var(--inputRadius)) }
 textarea.resize-vertical { resize: vertical }
@@ -841,24 +680,194 @@ textarea.resize-horizontal { resize: horizontal }
 label, legend { display: inline-flex; gap: 0.7rem; margin-block-end: var(--inputMargin); font-weight: 600; align-items: center }
 fieldset { border: 1px solid var(--inputBorderColor); border-radius: var(--inputRadius) }
 legend { padding: var(--inputPadding) }
-option { padding: 5px; color: var(--inputColor) }
+option { padding: 0.5rem; color: var(--inputColor) }
 :is(input,textarea).is-blank { border:none!important; background:transparent }
 
 select {
     background-image: linear-gradient(45deg, transparent 50%, var(--inputColor) 50%), linear-gradient(135deg, var(--inputColor) 50%, transparent 50%), linear-gradient(to right, var(--inputBorderColor), var(--inputBorderColor));
-    background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%, calc(100% - 40px) 50%;
-    background-size: 5px 5px, 5px 5px, 1px 100%;
+    background-position: calc(100% - 2rem) 50%, calc(100% - 1.5rem) 50%, calc(100% - 4rem) 50%;
+    background-size: 0.5rem 0.5rem, 0.5rem 0.5rem, 0.1rem 100%;
     background-repeat: no-repeat;
     color: var(--inputColor);
-    padding-inline-end: 45px;
+    padding-inline-end: 4.5rem;
 }
 
-[dir="rtl"] select { padding-inline-start: 53px }
+[dir="rtl"] select { padding-inline-start: 5.3rem }
 
 select:required:user-invalid { color: var(--inputPlaceholderColor) }
 select:hover { color: var(--inputColor); background-image: linear-gradient(45deg, transparent 50%, var(--inputColor) 50%), linear-gradient(135deg, var(--inputColor) 50%, transparent 50%), linear-gradient(to right, var(--inputBorderHover), var(--inputBorderHover)) }
 select:focus { color: var(--inputColor); background-image: linear-gradient(45deg, transparent 50%, var(--inputColor) 50%), linear-gradient(135deg, var(--inputColor) 50%, transparent 50%), linear-gradient(to right, var(--inputBorderActive, var(--inputBorderHover)), var(--inputBorderActive)) }
 select:-moz-focusring { color:transparent; text-shadow: 0 0 0 var(--color) }
+
+/** Radio checkbox switch */
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]) {
+    -webkit-appearance: none;
+    appearance: none;
+    height: var(--inputHeight);
+    width: var(--inputHeight);
+    aspect-ratio: 1 / 1;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--inputBorderColor));
+    background: var(--b, var(--inputBgColor));
+}
+
+input:where([type="checkbox"],[type="radio"]):not([type="switch"])::after {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0.15rem;
+    transition: opacity var(--d-o, 0.2s), transform var(--d-t, 0.3s) var(--d-t-e, ease);
+}
+
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]):checked {
+    --b: var(--inputActive);
+    --bc: var(--inputActive);
+    --d-o: 100ms;
+    --d-t: 250ms;
+    --d-t-e: ease-in-out;
+}
+
+/* Disabled */
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]):disabled { filter: grayscale(100%); cursor: not-allowed; opacity: .7 }
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]):disabled:checked { filter: grayscale(100%) }
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]):disabled + label { cursor: not-allowed }
+
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]):hover:not(:checked):not(:disabled) { --bc: var(--inputBorderHover) }
+
+input:where([type="checkbox"],[type="radio"]):focus { box-shadow: 0 0 0 2px var(--inputFocus) }  
+input:where([type="checkbox"],[type="radio"]):not([role="switch"])::after { opacity: var(--o, 0) }  
+input:where([type="checkbox"],[type="radio"]):not([role="switch"]):checked { --o: 1 }
+  
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]) + label {
+    font-size: 1.4rem;
+    line-height: var(--inputHeight);
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-inline-start: 0.4rem;
+    user-select: none;
+}
+
+input[type="checkbox"]:not([role="switch"]) { border-radius: 0.3rem }
+
+input[type="checkbox"]:not([role="switch"])::after {
+    width: 0.6rem;
+    height: 1rem;
+    border: 1px solid var(--inputActiveInner);
+    border-block-start: 0;
+    border-inline-start: 0;
+    left: 0.8rem;
+    top: 0.45rem;
+    transform: rotate(43deg);
+}
+
+/* Switch */
+input[type="checkbox"][role="switch"] { width: 4rem; border-radius: 100vw }
+
+input[type="checkbox"][role="switch"]::after {
+    left: 0.3rem;
+    top: 0.3rem;
+    border-radius: 100vw;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--ab, var(--primary));
+    transform: translateX(var(--x, 0));
+}
+
+input[type="checkbox"][role="switch"]:checked { --ab: var(--inputActiveInner); --x: 1.7rem }
+input[type="checkbox"][role="switch"]:disabled:not(:checked)::after { opacity: .7 }
+
+/* Radio */
+input[type="radio"] { border-radius: 100vw }
+
+input[type="radio"]:after {
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 100vw;
+    background: var(--inputActiveInner);
+    transform: scale(var(--s, 0.7));
+}
+
+input[type="radio"]:checked { --s: .5 }
+
+/**** 
+ * Toggle token
+ * */
+.toggle-token, .toggle-token legend { all: unset }
+.toggle-token input:where([type="radio"],[type="checkbox"]) { clip: rect(0 0 0 0)!important; position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; white-space: nowrap!important; border: 0!important }
+ 
+.toggle-token {
+    --tokenBg: var(--buttonBg);
+    --tokenColor: var(--buttonColor);
+    --tokenRadius: var(--buttonRadius);
+    --tokenPadding: var(--buttonPadding);
+    --tokenMargin: var(--buttonMargin);
+
+    --tokenBorder: var(--buttonBorderWidth) var(--buttonBorderStyle);
+    --tokenBorderColor: var(--buttonBorderColor);
+
+    --tokenBgHover: var(--buttonBgHover);
+    --tokenColorHover: var(--buttonColorHover);
+    --tokenBorderHover: var(--buttonBorderHover);
+
+    --tokenBgActive: var(--buttonColor);
+    --tokenColorActive: var(--buttonBg);
+    --tokenBorderActive: var(--inputBorderActive);
+}
+
+.toggle-token legend { display: var(--tokenLegend, none) }
+ 
+.toggle-token label,
+.toggle-token input:where([type="radio"],[type="checkbox"]) + label {
+    display: var(--tokenDisplay, inline-flex);
+    flex-direction: var(--tokenDirection, row);
+    background: var(--tokenBg);
+    color: var(--tokenColor);
+    font-size: inherit;
+    font-weight: var(--tokenFontWeight, 400);
+    letter-spacing: var(--tokenSpace, var(--fontSpace));
+    line-height: var(--tokenLine, var(--fontLine));
+    text-decoration: var(--tokenDecoration);
+    text-wrap: nowrap;
+    border: var(--tokenBorder) var(--tokenBorderColor);
+    border-radius: var(--tokenRadius, 100vw);
+    padding: var(--tokenPadding); 
+    margin: var(--tokenMargin);
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+}
+ 
+.toggle-token label:where(:hover,:focus,:focus-visible,:focus-within),
+.toggle-token input:where([type="radio"],[type="checkbox"]):hover + label { 
+    background: var(--tokenBgHover); 
+    color: var(--tokenColorHover); 
+    border-color: var(--tokenBorderHover);
+    text-decoration: var(--tokenDecorationHover)
+}
+ 
+.toggle-token label:has(input:where([type="radio"],[type="checkbox"]):checked),
+.toggle-token input:where([type="radio"],[type="checkbox"]):checked + label { 
+    background: var(--tokenBgActive); 
+    color: var(--tokenColorActive); 
+    border-color: var(--tokenBorderActive); 
+    font-weight: var(--tokenFontWeight);
+    text-decoration: var(--tokenDecorationActive);
+}
+ 
+.toggle-token label:has(input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled)),
+.toggle-token input:where([type="radio"],[type="checkbox"]):where(:disabled,.disabled) + label {
+    filter: var(--tokenDisabledFilter, grayscale(100%)); 
+    cursor: not-allowed;
+    opacity: var(--tokenOpacity, 0.3);
+    text-decoration: var(--tokenTextDec, line-through);
+    pointer-events: none;
+}
 
 /* ------------------
   lists
@@ -888,7 +897,7 @@ ul.outside,ol.outside {list-style-position:outside}
   hr - horizontal rules
 --------------------- */
 hr { width: 100%; margin: var(--hrMargin) auto; background-color: var(--hrColor); border: 0 none }
-hr:not([size]) { height: 1px }
+hr:not([size]) { height: 0.1rem }
 hr.gradient { background-color: transparent; background-image: linear-gradient(to right, var(--hrGradient) 0%, var(--hrColor) 50%, var(--hrGradient) 100%) }
 
 /* .text-hr:  --- text --- // .text-hre: text --- // .text-hrs: --- text */
@@ -920,7 +929,7 @@ table {
 }
 
 table caption { margin: var(--margin) }
-table tr td { padding: var(--tablePadding); min-width: 150px; vertical-align: middle; border-block-end: var(--tableBorder) }
+table tr td { padding: var(--tablePadding); min-width: 15rem; vertical-align: middle; border-block-end: var(--tableBorder) }
 table tr:last-child td { border-block-end: 0 }
 
 table th {
@@ -991,7 +1000,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 [columns="12"] { --grid-tc-ln: 12 }
 
 [columns="fit"] { --grid-tc-ln: auto-fit }
-[columns="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 50px 1fr }
+[columns="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 5rem 1fr }
 [columns="1f"] { --grid-tc-ln: 1 }
 [columns="1f"] > * { grid-column: 1 / -1 }
 
@@ -1083,7 +1092,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     [columns-s="11"] { --grid-tc-ln: 11 }
     [columns-s="12"] { --grid-tc-ln: 12 }
     [columns-s="fit"] { --grid-tc-ln: auto-fit }
-    [columns-s="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 50px 1fr }
+    [columns-s="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 5rem 1fr }
     [columns-s="1f"] { --grid-tc-ln: 1 }
     [columns-s="1f"] > * { grid-column: 1 / -1 }
     [columns-s="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
@@ -1176,7 +1185,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     [columns-m="11"] { --grid-tc-ln: 11 }
     [columns-m="12"] { --grid-tc-ln: 12 }
     [columns-m="fit"] { --grid-tc-ln: auto-fit }
-    [columns-m="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 50px 1fr }
+    [columns-m="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 5rem 1fr }
     [columns-m="1f"] { --grid-tc-ln: 1 }
     [columns-m="1f"] > * { grid-column: 1 / -1 }
     [columns-m="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
@@ -2038,7 +2047,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 .debug>:nth-child(6n+6){ --dc:rgb(94,204,211,0.8) }
 .debug>:nth-child(6n+7){ --dc:rgb(248,110,91,0.8) }
 .debug.outline { outline: 1px dotted var(--red) }
-.debug.outline-child { outline: 1px dotted var(--red); outline-offset: 5px }
+.debug.outline-child { outline: 1px dotted var(--red); outline-offset: 0.5rem }
 .debug.outline-child > * { outline: 1px dotted var(--green) }
 
 /* ------------------
@@ -2057,10 +2066,11 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 .field-sizing { field-sizing: content } /* to be used on: input, textarea, select */
 .flow > * + * { margin-top: var(--flow-space, 1em) } /* to be used on: containers w/ <p>s <h>s etc. */
 
-.block { display:block }
+.block { display: block }
 .inline { display: inline; margin: 0 }
 .inline-block { display: inline-block; margin: 0 }
 .center { display: block; text-align: center; margin: 0 auto }
+.display-none { display: none }
 
 .text-clip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .text-start { text-align: start }
@@ -2096,6 +2106,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     .inline-s { display: inline; margin: 0 }
     .inline-block-s { display: inline-block; margin: 0 }
     .center-s { display: block; text-align: center; margin: 0 auto }
+    .display-none-s { display: none }
 
     .text-clip-s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-s { text-align: start }
@@ -2132,6 +2143,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     .inline-m { display: inline; margin: 0 }
     .inline-block-m { display: inline-block; margin: 0 }
     .center-m { display: block; text-align: center; margin: 0 auto }
+    .display-none-m { display: none }
 
     .text-clip-m { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-m { text-align: start }
