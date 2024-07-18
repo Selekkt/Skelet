@@ -238,15 +238,15 @@ h1,h2,h3,h4,h5,h6,
 p { margin:var(--pMargin) }
 blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic }
 
-a:not([href]) { cursor: not-allowed }
-a:not(.button,[role="button"]) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto); text-underline-offset: var(--linkDecorationOffset, inherit) }
-a:not(.button,[role="button"]):hover { color: var(--linkHover); text-decoration: var(--linkDecorationHover, auto) }
+:where(a,[role="link"]):not([href]) { cursor: not-allowed }
+:where(a,[role="link"]):not(.button,[role="button"]) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto); text-underline-offset: var(--linkDecorationOffset, inherit) }
+:where(a,[role="link"]):not(.button,[role="button"]):hover { color: var(--linkHover); text-decoration: var(--linkDecorationHover, auto) }
 
-.all-states a:not(.button,[role="button"]):focus { color: var(--linkFocus, inherit); text-decoration: var(--linkDecorationFocus, auto) }
-.all-states a:not(.button,[role="button"]):active { color: var(--linkActive, inherit); text-decoration: var(--linkDecorationActive, auto) }
-.all-states a:not(.button,[role="button"]):not(:hover):visited { color: var(--linkVisited, inherit); text-decoration: var(--linkDecorationVisited, auto) }
+.all-states :where(a,[role="link"]):not(.button,[role="button"]):focus { color: var(--linkFocus, inherit); text-decoration: var(--linkDecorationFocus, auto) }
+.all-states :where(a,[role="link"]):not(.button,[role="button"]):active { color: var(--linkActive, inherit); text-decoration: var(--linkDecorationActive, auto) }
+.all-states :where(a,[role="link"]):not(.button,[role="button"]):not(:hover):visited { color: var(--linkVisited, inherit); text-decoration: var(--linkDecorationVisited, auto) }
 
-a.no-style { text-decoration: none }
+:where(a,[role="link"]).no-style { text-decoration: none }
 
 /*** Accessibility */
 *:focus-visible { outline-color: var(--inputFocus); outline-offset: var(--a11yOffset, 3px) }
@@ -675,8 +675,8 @@ input[type="range"]::-moz-range-thumb     { border: 1px solid rgb(0 0 0 / .5); h
 input[type="range"]::-webkit-slider-thumb { border: 1px solid rgb(0 0 0 / .5); height: 1.8rem; width: 1.8rem; border-radius: 2.5rem; background: var(--primary); cursor: pointer; -webkit-appearance: none; appearance: none; margin-block-start: -0.7rem }
 
 textarea { min-height: 6.5rem; padding: var(--inputPadding); border-radius: var(--textareaRadius, var(--inputRadius)) }
-textarea.resize-vertical { resize: vertical }
-textarea.resize-horizontal { resize: horizontal }
+textarea.resize-block { resize: vertical }
+textarea.resize-inline { resize: horizontal }
 label, legend { display: inline-flex; gap: 0.7rem; margin-block-end: var(--inputMargin); font-weight: 600; align-items: center }
 fieldset { border: 1px solid var(--inputBorderColor); border-radius: var(--inputRadius) }
 legend { padding: var(--inputPadding) }
