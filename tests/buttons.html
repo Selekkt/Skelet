@@ -32,60 +32,74 @@
 <a href="" class="button">a.button</a>
 </div>
 <hr>
-<fieldset>
-    <legend>.stack</legend>
-    <div class="stack">
+<fieldset id="stack">
+    <legend>x-stack</legend>
+    <x-stack>
         <input type="text" placeholder="Input">
         <button class="is-primary">Button</button>
-    </div>
+    </x-stack>
 </fieldset>
+<a href="#stack">url</a>
+
 <style>
-.stack.my-style { border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderColor); border-radius: var(--inputRadius); }
-.stack.my-style:focus-within { background: var(--inputBg); border-color: var(--inputActive) }
+x-stack.my-style { border: var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderColor); border-radius: var(--inputRadius); }
+x-stack.my-style:focus-within { background: var(--inputBg); border-color: var(--inputActive) }
 </style>
-<fieldset>
-    <legend>.stack.no-style</legend>
-    <div class="stack no-style my-style">
+<fieldset id="stack-no-style">
+    <legend>x-stack no-style</legend>
+    <x-stack no-style class="my-style">
         <input type="text" placeholder="Input" class="is-blank">
         <button class="is-primary">Button</button>
-    </div>
+    </x-stack>
 </fieldset>
+<a href="#stack-no-style">url</a>
+
+<section id="presuffix">
 <fieldset>
     <legend>Prefix and suffix</legend>
-    <div class="stack presuffix">
+    <x-stack presuffix>
         <input type="text" placeholder="https://selekkt.dk" class="is-blank">
         <span>/skelet/v3</span>
-    </div>
+    </x-stack>
+    <code>x-stack presuffix</code>
 <br>
-    <div class="stack no-style presuffix">
-        <span>https://</span>
-        <input type="text" placeholder="selekkt.dk/skelet/v3" class="is-blank">
-    </div>
+    <x-stack no-style presuffix>
+        <label for="full-url">https://</label>
+        <input id="full-url" type="text" placeholder="selekkt.dk/skelet/v3" class="is-blank">
+    </x-stack>
+    <code>x-stack no-style presuffix</code>
 <br>
-    <div class="stack no-style presuffix">
-        <span>https://</span>
-        <input type="text" placeholder="skelet" class="is-blank">
+    <x-stack no-style presuffix>
+        <label for="part-url">https://</label>
+        <input id="part-url" type="text" placeholder="skelet" class="is-blank">
         <span>.dk</span>
-    </div>
+    </x-stack>
+    <code>x-stack no-style presuffix</code>
 <br>
-    <div class="stack no-style presuffix">
-        <span><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" placeholder="Search" class="is-blank">
-        <button>Search</button>
-    </div>
+    <x-stack no-style presuffix>
+        <label for="searchbox"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input id="searchbox" type="text" placeholder="Search" class="is-blank">
+        <button class="text-normal">Clear</button>
+    </x-stack>
+    <code>x-stack no-style presuffix</code>
 <br>
-    <div class="stack no-style presuffix">
+    <x-stack no-style presuffix>
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search" class="is-blank">
         <button class="text-uppercase"><i class="fa-regular fa-circle-xmark"></i></button>
-    </div>
+    </x-stack>
+    <code>x-stack no-style presuffix</code>
 <br>
-    <div class="stack no-style presuffix">
+    <x-stack no-style presuffix>
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search" class="is-blank">
         <span class="is-loading"></span>
-    </div>
+    </x-stack>
+    <code>x-stack no-style presuffix</code>
 </fieldset>
+<a href="#presuffix">url</a>
+</section>
+
 <hr>
 <button class="is-small">button small</button>
 <button class="is-large">button large</button>
