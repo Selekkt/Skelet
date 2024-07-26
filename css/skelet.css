@@ -58,12 +58,20 @@
     --space-4: 1.6rem; /* 16px */
     --space-5: 2.4rem; /* 24px */
     --space-6: 3.2rem; /* 32px */
+
     --space-7: clamp(4rem, 4rem + ((1vw - 7.77rem) * 3.2258), 4.8rem);
     --space-8: clamp(4.8rem, 4.8rem + ((1vw - 7.77rem) * 6.4516), 6.4rem);
     --space-9: clamp(6.4rem, 6.4rem + ((1vw - 7.77rem) * 12.9032), 9.6rem);
     --space-10: clamp(8rem, 8rem + ((1vw - 7.77rem) * 19.3548), 12.8rem);
     --space-11: clamp(9.6rem, 9.6rem + ((1vw - 7.77rem) * 38.7097), 19.2rem);
     --space-12: clamp(11.2rem, 11.2rem + ((1vw - 7.77rem) * 58.0645), 25.6rem);
+
+    --space-13: clamp(12.8rem, 12.8rem + ((1vw - 7.77rem) * 77.4194), 32rem);
+    --space-14: clamp(14.4rem, 14.4rem + ((1vw - 7.77rem) * 96.7742), 38.4rem);
+    --space-15: clamp(16rem, 16rem + ((1vw - 7.77rem) * 116.1290), 44.8rem);
+    --space-16: clamp(17.6rem, 17.6rem + ((1vw - 7.77rem) * 135.4839), 51.2rem);
+    --space-17: clamp(19.2rem, 19.2rem + ((1vw - 7.77rem) * 154.8387), 57.6rem);
+    --space-18: clamp(20.8rem, 20.8rem + ((1vw - 7.77rem) * 174.1935), 64rem);
 
     /* other */
     --padding: var(--space-3);
@@ -72,7 +80,7 @@
     --borderWidth: 1px;
     --borderStyle: solid;
     --hrMargin: var(--margin);
-    --pMargin: var(--margin) 0;
+    --pMargin: var(--space-2) 0;
 
     /* input/textarea/tables etc. */
     --inputPadding: var(--space-3);
@@ -118,7 +126,7 @@
     --buttonShadow: 0 0 0 0 rgb(0 0 0 / 0);
     --iconSize: var(--fontSize);
 
-    /* grids */
+    /* x-grid /  */
     --rowGap: var(--space-3);
     --columnGap: var(--space-3);
     --gap: var(--rowGap) var(--columnGap);
@@ -264,7 +272,7 @@ blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic }
 :is(html.js .no-js, html.no-js .js, html.no-js .no-js-hidden):not(html) { display: none!important }
 
 code, samp {
-    padding: var(--inputPadding);
+    padding: var(--space-1) var(--space-3);
     margin: var(--inputMargin);
     font-size: 90%;
     white-space: nowrap;
@@ -283,7 +291,7 @@ pre > code { display: block; padding: var(--inputPadding); white-space: pre }
 kbd {
     display: inline-block;
     margin: var(--inputMargin);
-    padding: var(--inputPadding);
+    padding: var(--space-1) var(--space-3);
     background: var(--inputBg);
     box-shadow: 0px 0px 10px 0 var(--shadow), 0 0.2rem 0 var(--inputBorderColor);
     border: 1px solid var(--inputBorderColor);
@@ -294,7 +302,7 @@ kbd {
 }
 
 .is-green { border-color: var(--green)!important; --inputFocus: var(--green); --inputBorderColor: var(--green); --inputBorderHover: var(--green) }
-.is-red, input:not(:placeholder-shown):user-invalid { border-color: var(--red)!important; --inputFocus: var(--red); --inputBorderColor: var(--red); --inputBorderHover: var(--red) }
+.is-red, input:not(:placeholder-shown):user-invalid,[aria-invalid="true"] { border-color: var(--red)!important; --inputFocus: var(--red); --inputBorderColor: var(--red); --inputBorderHover: var(--red) }
 
 /* Vertical and Horizontal align */
 .center-axyz { display: grid; place-items: center }
@@ -477,7 +485,7 @@ x-stack[presuffix] {
 
 x-stack[presuffix]:hover { border-color: var(--inputBorderHover); color: var(--inputColorHover); background: var(--inputBgHover) }
 x-stack[presuffix]:focus-within { border-color: var(--inputBorderActive); color: var(--inputColorActive); background: var(--inputBgActive) }
-x-stack[presuffix] > * { padding: var(--inputPadding); margin: 0; font-size: var(--stackFontSize, inherit) }
+x-stack[presuffix] > * { padding: var(--inputPadding); margin: 0!important; font-size: var(--stackFontSize, inherit) }
 x-stack[presuffix] > label { white-space: nowrap; font-weight: normal }
 x-stack[presuffix] > :where(label,button,span):first-child { border: 0; border-inline-end: inherit }
 x-stack[presuffix] > :where(label,button,span):last-child { border: 0; border-inline-start: inherit }
@@ -714,6 +722,7 @@ input:where([type="checkbox"],[type="radio"]):not([type="switch"]) {
     margin: 0;
     cursor: pointer;
     border: 1px solid var(--bc, var(--inputBorderColor));
+    border-radius: var(--br, var(--inputRadius));
     background: var(--b, var(--inputBgColor));
 }
 
@@ -738,7 +747,7 @@ input:where([type="checkbox"],[type="radio"]):not([type="switch"]):disabled { fi
 input:where([type="checkbox"],[type="radio"]):not([type="switch"]):disabled:checked { filter: grayscale(100%) }
 input:where([type="checkbox"],[type="radio"]):not([type="switch"]):disabled + label { cursor: not-allowed }
 
-input:where([type="checkbox"],[type="radio"]):not([type="switch"]):hover:not(:checked):not(:disabled) { --bc: var(--inputBorderHover) }
+input:where([type="checkbox"],[type="radio"]):not([type="switch"]):hover:not(:checked):not(:disabled) { border-color: var(var(--bcHover), var(--inputBorderHover)) }
 
 input:where([type="checkbox"],[type="radio"]):focus { box-shadow: 0 0 0 2px var(--inputFocus) }  
 input:where([type="checkbox"],[type="radio"]):not([role="switch"])::after { opacity: var(--o, 0) }  
@@ -754,7 +763,7 @@ input:where([type="checkbox"],[type="radio"]):not([type="switch"]) + label {
     user-select: none;
 }
 
-input[type="checkbox"]:not([role="switch"]) { border-radius: 0.3rem }
+input[type="checkbox"]:not([role="switch"]) { --br: 0.3rem }
 
 input[type="checkbox"]:not([role="switch"])::after {
     width: 0.6rem;
@@ -918,36 +927,33 @@ table {
     --tableBg: var(--inputBg);
     --tableStrip: var(--inputBg);
     --tablePadding: var(--inputPadding);
+    --tableMargin: var(--margin);
     --tableBorderWidth: var(--inputBorderWidth);
     --tableBorderStyle: var(--inputBorderStyle);
     --tableBorderColor: var(--inputBorderColor);
     --tableBorder: var(--tableBorderWidth) var(--tableBorderStyle) var(--tableBorderColor);
-    display: block; 
-    overflow-x: auto; 
-    white-space: nowrap; 
-    max-width: -moz-fit-content; 
-    max-width: fit-content;
+
+    overflow-x: auto;
     border-spacing: 0;
-    font-size: 1.4rem;
-    margin: var(--margin);
+    font-size: var(--tableSize, inherit);
+    margin: var(--tableMargin);
 }
 
-table caption { margin: var(--margin) }
+table caption { margin: var(--tableMargin) }
 table tr td { padding: var(--tablePadding); min-width: 15rem; vertical-align: middle; border-block-end: var(--tableBorder) }
 table tr:last-child td { border-block-end: 0 }
 
 table th {
     position: relative;
     color: var(--tableColor);
-    text-transform: uppercase;
+    text-transform: var(--tableTextTransform, capitalize);
     padding: var(--tablePadding);
     text-align: start;
     vertical-align: middle;
     border-block-start: var(--tableBorder);
     border-block-end: var(--tableBorder);
     overflow: hidden;
-    font-weight: 400;
-    letter-spacing: 0
+    font-weight: 400
 }
 
 table thead th { background: var(--tableBg) }
@@ -978,7 +984,6 @@ x-grid,[x-grid] {
     --grid-ce: -1; /* Column End */
     --grid-rs: 1; /* Row Start */
     --grid-re: -1; /* Row End */
-    --gap: var(--rowGap, 1rem) var(--columnGap, 1rem);
 
     display: grid;
     gap: var(--gap);
@@ -1270,7 +1275,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
   flexbox
 ------------------ */
 /*  Flex Container */
-:where(x-flex,[x-flex]) { --jsDisplay: flex; display: flex; gap: var(--rowGap, 1rem) var(--columnGap, 1rem) }
+:where(x-flex,[x-flex]) { --jsDisplay: flex; display: flex; gap: var(--gap) }
 :where(x-flex,[x-flex]) > * { flex: 0 1 auto; width: auto; appearance: none }
 :where(x-flex,[x-flex]).even > * { width: 100% }
 :where(x-flex,[x-flex]) img { object-fit: contain; max-width: 100% }
@@ -2044,15 +2049,14 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 
 /* Debug */
 .debug > * { --dc:rgb(248 110 91 / 0.8); background: var(--dc) }
-.debug>:nth-child(6n+2){ --dc:rgb(103 126 208 / 0.8) }
-.debug>:nth-child(6n+3){ --dc:rgb(224 174 72 / 0.8) }
-.debug>:nth-child(6n+4){ --dc:rgb(77 214 115 / 0.8) }
-.debug>:nth-child(6n+5){ --dc:rgb(217 103 219 / 0.8) }
-.debug>:nth-child(6n+6){ --dc:rgb(94 204 211 / 0.8) }
-.debug>:nth-child(6n+7){ --dc:rgb(248 110 91 / 0.8) }
-.debug.outline { outline: 1px dotted var(--red) }
-.debug.outline-child { outline: 1px dotted var(--red); outline-offset: 0.5rem }
-.debug.outline-child > * { outline: 1px dotted var(--green) }
+.debug > :nth-child(6n+2){ --dc:rgb(103 126 208 / 0.8) }
+.debug > :nth-child(6n+3){ --dc:rgb(224 174 72 / 0.8) }
+.debug > :nth-child(6n+4){ --dc:rgb(77 214 115 / 0.8) }
+.debug > :nth-child(6n+5){ --dc:rgb(217 103 219 / 0.8) }
+.debug > :nth-child(6n+6){ --dc:rgb(94 204 211 / 0.8) }
+.debug > :nth-child(6n+7){ --dc:rgb(248 110 91 / 0.8) }
+.debug.outline { outline: 1px dashed red }
+.debug.outline > * { outline: 1px dashed var(--dc); background: none }
 
 /* ------------------
   utilities
@@ -2091,7 +2095,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 .text-break-word { overflow-wrap: break-word }
 .text-balance { text-wrap: balance }
 
-.sticky { position: sticky; inset-block-start: var(--sticky, 0) }
+.sticky { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
 .sticky-bottom { position: sticky; inset-block-end: var(--sticky, 0) }
 .sticky-none { position: inherit }
 
@@ -2127,7 +2131,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     .text-break-word-s { overflow-wrap: break-word }
     .text-balance-s { text-wrap: balance }
 
-    .sticky-s { position: sticky; inset-block-start: var(--sticky, 0) }
+    .sticky-s { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
     .sticky-bottom-s { position: sticky; inset-block-end: var(--sticky, 0) }
     .sticky-none-s { position: inherit }
 }
@@ -2164,7 +2168,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
     .text-break-word-m { overflow-wrap: break-word }
     .text-balance-m { text-wrap: balance }
 
-    .sticky-m { position: sticky; inset-block-start: var(--sticky, 0) }
+    .sticky-m { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
     .sticky-bottom-m { position: sticky; inset-block-end: var(--sticky, 0) }
     .sticky-none-m { position: inherit }
 }
