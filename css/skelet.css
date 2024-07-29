@@ -186,6 +186,7 @@ input[type="number"] { -moz-appearance: textfield }
 :is([disabled],[disabled]:hover,.disabled) { filter: grayscale(100%); opacity: 0.7!important; cursor: not-allowed!important; --buttonColor:var(--white); --buttonColorHover: var(--white) }
 :where(html:has(dialog:modal[open])) { overflow: clip }
 i svg { display: inline; height: var(--iconSizeH, var(--iconSize)); width: var(--iconSizeW, var(--iconSize)) }
+i:has(svg) { display: block; line-height: 0 }
 
 /* ------------------
     basics
