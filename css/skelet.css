@@ -262,7 +262,7 @@ blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic }
 *:focus-visible { outline-color: var(--inputFocus); outline-offset: var(--a11yOffset, 3px) }
 .a11y-off *:focus-visible { outline: 0; box-shadow: none }
 .a11y-inputs-off :where(select,input,textarea):focus-visible { outline: 0; box-shadow: none }
-.a11y-custom :where(*,a):focus-visible { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: 2px solid transparent; outline-offset: var(--a11yOffset, 2px) }
+.a11y-custom :where(*,a):focus-visible { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: var(--a11yOutline, 2px solid transparent); outline-offset: var(--a11yOffset, 2px) }
 
 .visibility-hidden { visibility: hidden }
 .sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
@@ -469,8 +469,8 @@ x-stack {
     overflow: var(--stackOverflow, initial);
 }
 
-x-stack[no-style] > * { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
-x-stack[no-style] > input:is(:hover,:focus,:active) { border: none }
+x-stack[no-style] :is(input,button) { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
+x-stack[no-style] input:is(:hover,:focus,:active) { border: none }
 x-stack:is([no-style],[presuffix]) input:focus { box-shadow: none; outline: none!important; border: none!important }
 
 x-stack[presuffix] {
@@ -485,11 +485,17 @@ x-stack[presuffix] {
 }
 
 x-stack[presuffix]:hover { border-color: var(--inputBorderHover); color: var(--inputColorHover); background: var(--inputBgHover) }
-x-stack[presuffix]:focus-within { border-color: var(--inputBorderActive); color: var(--inputColorActive); background: var(--inputBgActive) }
-x-stack[presuffix] > * { padding: var(--inputPadding); margin: 0!important; font-size: var(--stackFontSize, inherit) }
+x-stack[presuffix]:focus-within { 
+    border-color: var(--inputBorderActive, inherit); 
+    color: var(--inputColorActive); 
+    background: var(--inputBgActive);
+    box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); 
+    outline: 2px solid transparent; outline-offset: var(--a11yOffset, 3px);
+}
+x-stack[presuffix] :is(input,button) { padding: var(--inputPadding); margin: 0!important; font-size: var(--stackFontSize, inherit) }
 x-stack[presuffix] > label { white-space: nowrap; font-weight: normal }
-x-stack[presuffix] > :where(label,button,span):first-child { border: 0; border-inline-end: inherit }
-x-stack[presuffix] > :where(label,button,span):last-child { border: 0; border-inline-start: inherit }
+x-stack[presuffix] > :where(label,button,span):first-child { border: 0; border-inline-end: inherit; border-radius: 0 }
+x-stack[presuffix] > :where(label,button,span):last-child { border: 0; border-inline-start: inherit; border-radius: 0 }
 
 /* ------------------
   buttons
@@ -2097,7 +2103,7 @@ x-flex[ps="stretch end"] { place-self: stretch flex-end }
 .text-balance { text-wrap: balance }
 
 .sticky { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
-.sticky-bottom { position: sticky; inset-block-end: var(--sticky, 0) }
+.sticky-bottom { position: sticky; inset-block-end: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
 .sticky-none { position: inherit }
 
 @media (max-width: 777px) { 
