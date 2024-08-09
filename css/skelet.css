@@ -216,20 +216,20 @@ main { flex: 1 }
     --hTextWrap: balance;
     --hScale: var(--globalScale);
 
-    --h1Size: clamp(3.1rem, 3.1rem + ((1vw - 7.77rem) * 6.4516), 4.7rem);
-    --h2Size: clamp(2.7rem, 2.7rem + ((1vw - 7.77rem) * 3.6290), 3.6rem);
-    --h3Size: clamp(2.4rem, 2.4rem + ((1vw - 7.77rem) * 2.8226), 3.1rem);
-    --h4Size: clamp(2.2rem, 2.2rem + ((1vw - 7.77rem) * 1.2097), 2.5rem);
-    --h5Size: clamp(2rem, 2rem + ((1vw - 7.77rem) * 1.2097), 2.3rem);
-    --h6Size: clamp(1.6rem, 1.6rem + ((1vw - 7.77rem) * 0.8065), 1.8rem);
+    --h1Size: calc(var(--hScale) * clamp(3.1rem, 3.1rem + ((1vw - 7.77rem) * 6.4516), 4.7rem));
+    --h2Size: calc(var(--hScale) * clamp(2.7rem, 2.7rem + ((1vw - 7.77rem) * 3.6290), 3.6rem));
+    --h3Size: calc(var(--hScale) * clamp(2.4rem, 2.4rem + ((1vw - 7.77rem) * 2.8226), 3.1rem));
+    --h4Size: calc(var(--hScale) * clamp(2.2rem, 2.2rem + ((1vw - 7.77rem) * 1.2097), 2.5rem));
+    --h5Size: calc(var(--hScale) * clamp(2rem, 2rem + ((1vw - 7.77rem) * 1.2097), 2.3rem));
+    --h6Size: calc(var(--hScale) * clamp(1.6rem, 1.6rem + ((1vw - 7.77rem) * 0.8065), 1.8rem));
 }
 
-h1,.h1 { font-size: calc(var(--hScale) * var(--hSize, var(--h1Size))); line-height: var(--h1Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h1Space, var(--hSpace)) }
-h2,.h2 { font-size: calc(var(--hScale) * var(--hSize, var(--h2Size))); line-height: var(--h2Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h2Space, var(--hSpace)) }
-h3,.h3 { font-size: calc(var(--hScale) * var(--hSize, var(--h3Size))); line-height: var(--h3Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h3Space, var(--hSpace)) }
-h4,.h4 { font-size: calc(var(--hScale) * var(--hSize, var(--h4Size))); line-height: var(--h4Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h4Space, var(--hSpace)) }
-h5,.h5 { font-size: calc(var(--hScale) * var(--hSize, var(--h5Size))); line-height: var(--h5Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h5Space, var(--hSpace)) }
-h6,.h6 { font-size: calc(var(--hScale) * var(--hSize, var(--h6Size))); line-height: var(--h6Line, var(--hLine, var(--fontLine))); letter-spacing: var(--h6Space, var(--hSpace)) }
+h1,.h1 { font-size: var(--hSize, var(--h1Size)); line-height: var(--h1Line, var(--hLine, var(--fontLine))); letter-spacing: var(--hSpace, var(--h1Space)) }
+h2,.h2 { font-size: var(--hSize, var(--h2Size)); line-height: var(--h2Line, var(--hLine, var(--fontLine))); letter-spacing: var(--hSpace, var(--h2Space)) }
+h3,.h3 { font-size: var(--hSize, var(--h3Size)); line-height: var(--h3Line, var(--hLine, var(--fontLine))); letter-spacing: var(--hSpace, var(--h3Space)) }
+h4,.h4 { font-size: var(--hSize, var(--h4Size)); line-height: var(--h4Line, var(--hLine, var(--fontLine))); letter-spacing: var(--hSpace, var(--h4Space)) }
+h5,.h5 { font-size: var(--hSize, var(--h5Size)); line-height: var(--h5Line, var(--hLine, var(--fontLine))); letter-spacing: var(--hSpace, var(--h5Space)) }
+h6,.h6 { font-size: var(--hSize, var(--h6Size)); line-height: var(--h6Line, var(--hLine, var(--fontLine))); letter-spacing: var(--hSpace, var(--h6Space)) }
 
 h1,h2,h3,h4,h5,h6, 
 .h1,.h2,.h3,.h4,.h5,.h6,.hx { 
@@ -242,8 +242,6 @@ h1,h2,h3,h4,h5,h6,
     color: var(--hColor);
     margin: var(--hMargin);
 }
-
-.hx { --hTextWrap: inherit; --hMargin: 0; font-size: var(--hxSize, inherit); line-height: var(--hxLine, var(--hLine, var(--fontLine))); letter-spacing: var(--hxSpace, var(--hSpace)) }
 
 p { margin:var(--pMargin) }
 blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic }
@@ -929,7 +927,7 @@ hr.gradient { background-color: transparent; background-image: linear-gradient(t
 /* ------------------
   tables
 ------------------ */
-table {
+:root {
     --tableColor: currentColor;
     --tableBg: var(--inputBg);
     --tableStrip: var(--inputBg);
@@ -939,7 +937,9 @@ table {
     --tableBorderStyle: var(--inputBorderStyle);
     --tableBorderColor: var(--inputBorderColor);
     --tableBorder: var(--tableBorderWidth) var(--tableBorderStyle) var(--tableBorderColor);
+}
 
+table {
     overflow-x: auto;
     border-spacing: 0;
     font-size: var(--tableSize, inherit);
