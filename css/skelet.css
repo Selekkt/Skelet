@@ -528,7 +528,7 @@ button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"] {
 
 :where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]):hover { --buttonBg: var(--buttonBgHover); --buttonColor: var(--buttonColorHover); --buttonBorderColor: var(--buttonBorderHover); --buttonDecoration: var(--buttonDecorationHover) }
 
-.has-icon { display: inline-flex; align-items: center; justify-content: center; gap: var(--buttonGap, var(--buttonPadding)) }
+.has-icon { display: inline-flex; align-items: center; gap: var(--buttonGap, var(--buttonPadding)) }
 .has-icon i { display: grid; place-items: center; font-size: max(15px, var(--buttonSize)); pointer-events: none }
 .has-icon i > svg { display: inline; height: var(--iconSizeW, var(--iconSize)); width: var(--iconSizeW, var(--iconSize)) }
 
@@ -558,7 +558,7 @@ button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"] {
 :where(.is-loading,[aria-busy="true"]):where(span,button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]):not(:empty):after { margin-inline-start: 1rem }
 
 .is-unset { all: unset }
-.is-link:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]) { --buttonBg: transparent; --buttonColor: currentColor; --buttonPadding: 0; --buttonMargin: 0; --buttonWeight: inherit; --buttonSize: inherit }
+.is-link:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]) { --buttonBg: transparent; --buttonColor: currentColor; --buttonPadding: 0; --buttonMargin: 0; --buttonWeight: var(--fontWeight); --buttonSize: inherit; --buttonBorderWidth: 0 }
 .is-blank:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]) { background: transparent; --buttonBorderColor: transparent; --buttonBorderHover: var(--buttonBorderColor); --buttonColor: currentColor; --buttonColorHover: currentColor }
 .is-custom:where(button,.button,[role="button"],[type="button"],[type="submit"],[type="reset"]) { --buttonBg: transparent; --buttonBorderColor: transparent; --buttonBorderHover: transparent; --buttonColor: currentColor; --buttonColorHover: currentColor }
 
