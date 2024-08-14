@@ -691,7 +691,7 @@ input[type="range"]::-webkit-slider-thumb { border: 1px solid rgb(0 0 0 / .5); h
 textarea { min-height: 6.5rem; padding: var(--inputPadding); border-radius: var(--textareaRadius, var(--inputRadius)) }
 textarea.resize-block { resize: vertical }
 textarea.resize-inline { resize: horizontal }
-label, legend { display: inline-flex; gap: 0.7rem; margin-block-end: var(--inputMargin); font-weight: 600; align-items: center }
+label, legend { display: inline-flex; gap: 0.7rem; margin-block-end: var(--inputMargin); font-weight: var(--labelWeight, 600); align-items: center; color: var(--labelColor, currentColor) }
 fieldset { border: 1px solid var(--inputBorderColor); border-radius: var(--inputRadius) }
 legend { padding: var(--inputPadding) }
 option { padding: 0.5rem; color: var(--inputColor) }
@@ -759,12 +759,11 @@ input:where([type="checkbox"],[type="radio"]):not([role="switch"])::after { opac
 input:where([type="checkbox"],[type="radio"]):not([role="switch"]):checked { --o: 1 }
   
 input:where([type="checkbox"],[type="radio"]):not([type="switch"]) + label {
-    font-size: 1.4rem;
-    line-height: var(--inputHeight);
     display: inline-block;
+    line-height: var(--inputHeight);
     vertical-align: top;
     cursor: pointer;
-    margin-inline-start: 0.4rem;
+    margin-inline-start: var(--space-1);
     user-select: none;
 }
 
@@ -883,7 +882,7 @@ input[type="radio"]:checked { --s: .5 }
     filter: var(--tokenDisabledFilter, grayscale(100%)); 
     cursor: not-allowed;
     opacity: var(--tokenOpacity, 0.3);
-    text-decoration: var(--tokenTextDec, line-through);
+    text-decoration: var(--tokenTextDec, line-through) !important;
     pointer-events: none;
 }
 
