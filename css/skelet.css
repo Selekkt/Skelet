@@ -323,7 +323,7 @@ kbd {
 @media (min-width: 1024px) { .no-scrollbars-m { scrollbar-width:none; -ms-overflow-style:none } .no-scrollbars-m::-webkit-scrollbar { display: none } }
 
 /** Scroll snap */
-.scroll-snap {
+:root {
     --scrollDirection: x;
     --scrollType: mandatory;
     --scrollAlign: start;
@@ -336,8 +336,12 @@ kbd {
     --scrollChildHeight: auto;
     --scrollChildWidth: 100%;
     --scrollChildMinWidth: fit-content;
+    --scrollChildMaxWidth: fit-content;
     --scrollOverflowX: scroll;
     --scrollOverflowY: hidden;
+}
+
+.scroll-snap {
     display: flex;
     flex-flow: var(--scrollFlexFlow);
     gap: var(--scrollMargin);
@@ -356,7 +360,7 @@ kbd {
     scroll-snap-type: var(--scrollDirection) var(--scrollType);
 }
 
-.scroll-snap > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
+.scroll-snap > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); max-width: var(--scrollChildMaxWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
 .scroll-snap.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh; --scrollOverflowX: hidden; --scrollOverflowY: scroll; } 
 .scroll-snap.mandatory { --scrollType: mandatory } /* default */
 .scroll-snap.proximity { --scrollType: proximity }
@@ -367,20 +371,6 @@ kbd {
 
 @media (max-width: 777px)  {
     .scroll-snap-s {
-        --scrollDirection: x;
-        --scrollType: mandatory;
-        --scrollAlign: start;
-        --scrollMargin: 1rem;
-        --scrollPadding: 0;
-        --scrollStop: normal;
-        --scrollJustifyContent: start;
-        --scrollAlignItems: center;
-        --scrollFlexFlow: row nowrap;
-        --scrollChildHeight: auto;
-        --scrollChildWidth: 100%;
-        --scrollChildMinWidth: 100%;
-        --scrollOverflowX: scroll;
-        --scrollOverflowY: hidden;
         display: flex;
         flex-flow: var(--scrollFlexFlow);
         gap: var(--scrollMargin);
@@ -399,7 +389,7 @@ kbd {
         scroll-snap-type: var(--scrollDirection) var(--scrollType);
     }
 
-    .scroll-snap-s > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
+    .scroll-snap-s > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); max-width: var(--scrollChildMaxWidth); height: var(--scrollChildHeight); max-width: var(--scrollChildMaxWidth); scroll-snap-align: var(--scrollAlign) }
     .scroll-snap-s.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh; --scrollOverflowX: hidden; --scrollOverflowY: scroll; } 
     .scroll-snap-s.mandatory { --scrollType: mandatory } /* default */
     .scroll-snap-s.proximity { --scrollType: proximity }
@@ -411,20 +401,6 @@ kbd {
 
 @media (min-width: 1024px) {
     .scroll-snap-m {
-        --scrollDirection: x;
-        --scrollType: mandatory;
-        --scrollAlign: start;
-        --scrollMargin: 1rem;
-        --scrollPadding: 0;
-        --scrollStop: normal;
-        --scrollJustifyContent: start;
-        --scrollAlignItems: center;
-        --scrollFlexFlow: row nowrap;
-        --scrollChildHeight: auto;
-        --scrollChildWidth: 100%;
-        --scrollChildMinWidth: 100%;
-        --scrollOverflowX: scroll;
-        --scrollOverflowY: hidden;
         display: flex;
         flex-flow: var(--scrollFlexFlow);
         gap: var(--scrollMargin);
@@ -443,7 +419,7 @@ kbd {
         scroll-snap-type: var(--scrollDirection) var(--scrollType);
     }
 
-    .scroll-snap-m > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
+    .scroll-snap-m > * { flex: var(--scrollChildFlex, 1); width: var(--scrollChildWidth); min-width: var(--scrollChildMinWidth); max-width: var(--scrollChildMaxWidth); height: var(--scrollChildHeight); scroll-snap-align: var(--scrollAlign) }
     .scroll-snap-m.y { --scrollDirection: y; --scrollFlexFlow: column nowrap; --scrollAlignItems: start; --scrollHeight: 100vh; --scrollOverflowX: hidden; --scrollOverflowY: scroll; } 
     .scroll-snap-m.mandatory { --scrollType: mandatory } /* default */
     .scroll-snap-m.proximity { --scrollType: proximity }
