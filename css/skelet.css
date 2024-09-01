@@ -347,6 +347,7 @@ kbd {
     gap: var(--scrollMargin);
     justify-content: var(--scrollJustifyContent);
     align-items: var(--scrollAlignItems);
+    contain: content;
     height: 100%;
     min-height: var(--scrollHeight);
     overflow-x: var(--scrollOverflowX);
