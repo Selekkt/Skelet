@@ -73,6 +73,28 @@
     --space-17: clamp(19.2rem, 19.2rem + ((1vw - 7.77rem) * 154.8387), 57.6rem);
     --space-18: clamp(20.8rem, 20.8rem + ((1vw - 7.77rem) * 174.1935), 64rem);
 
+    /* Type scale system */
+    --type-1: 1rem;    /* 10px */
+    --type-2: 1.2rem;  /* 12px */
+    --type-3: 1.4rem;  /* 14px */
+    --type-4: 1.6rem;  /* 16px */
+    --type-5: 1.8rem;  /* 18px */
+    --type-6: 2rem;    /* 20px */
+
+    --type-7: clamp(2.2rem, 2.2rem + ((1vw - 7.77rem) * 0.6452), 2.4rem);
+    --type-8: clamp(2.4rem, 2.4rem + ((1vw - 7.77rem) * 1.2903), 2.8rem);
+    --type-9: clamp(2.8rem, 2.8rem + ((1vw - 7.77rem) * 2.5806), 3.6rem);
+    --type-10: clamp(3.2rem, 3.2rem + ((1vw - 7.77rem) * 3.8710), 4.4rem);
+    --type-11: clamp(3.6rem, 3.6rem + ((1vw - 7.77rem) * 5.1613), 5.2rem);
+    --type-12: clamp(4rem, 4rem + ((1vw - 7.77rem) * 6.4516), 6rem);
+
+    --type-13: clamp(4.4rem, 4.4rem + ((1vw - 7.77rem) * 7.7419), 6.8rem);
+    --type-14: clamp(4.8rem, 4.8rem + ((1vw - 7.77rem) * 9.0323), 7.6rem);
+    --type-15: clamp(5.2rem, 5.2rem + ((1vw - 7.77rem) * 10.3226), 8.4rem);
+    --type-16: clamp(5.6rem, 5.6rem + ((1vw - 7.77rem) * 11.6129), 9.2rem);
+    --type-17: clamp(6rem, 6rem + ((1vw - 7.77rem) * 12.9032), 10rem);
+    --type-18: clamp(6.4rem, 6.4rem + ((1vw - 7.77rem) * 14.1935), 10.8rem);
+
     /* other */
     --padding: var(--space-3);
     --margin: var(--space-4);
@@ -1849,6 +1871,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 .inline-block { display: inline-block; margin: 0 }
 .center { display: block; text-align: center; margin: 0 auto }
 .display-none { display: none }
+.overflow { overflow: hidden }
 
 .text-clip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .text-start { text-align: start }
@@ -1885,6 +1908,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     .inline-block-s { display: inline-block; margin: 0 }
     .center-s { display: block; text-align: center; margin: 0 auto }
     .display-none-s { display: none }
+    .overflow-s { overflow: hidden }
 
     .text-clip-s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-s { text-align: start }
@@ -1922,6 +1946,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     .inline-block-m { display: inline-block; margin: 0 }
     .center-m { display: block; text-align: center; margin: 0 auto }
     .display-none-m { display: none }
+    .overflow-m { overflow: hidden }
 
     .text-clip-m { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-m { text-align: start }
