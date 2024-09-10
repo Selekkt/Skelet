@@ -87,6 +87,12 @@
             min-height: 100px;
         }
 
+        .cards x-cell:has(img) {
+            padding: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
 /** Calculator */
         .calculator { 
             max-width: 400px; 
@@ -439,6 +445,29 @@
     <section id="two-dimensional">
         <h2 class="h5 text-center sticky title">Two dimensional grids</h2>
     
+    <!-- Grid -->
+    <h4 class="h5">Apple bento grid</h4>
+    <x-grid columns="6" columns-s="1f" class="cards">
+        <x-cell span="2">Active Noise Cancellation</x-cell>
+        <x-cell span-y="2-3">Force sensor</x-cell>
+        <x-cell span="2+1" span-y="2-3">Transparency</x-cell>
+        <x-cell span="2" span-y="4+1">USB-C and wireless charging</x-cell>
+        <x-cell span="2" span-y="5+1">Up to Personalized 30hrs battery life</x-cell>
+        
+        <x-cell>New architecture</x-cell>
+        <x-cell>Voice Isolation</x-cell>
+        <x-cell span="3-4" span-y="2-4"><img src="https://i.imgur.com/O0ZGFPM.jpeg"></x-cell>
+        <x-cell span-y="5+1">Best-fitting ever</x-cell>
+        <x-cell span="4+1" span-y="5+1">Case speaker</x-cell>
+
+        <x-cell>Apple silicon</x-cell>
+        <x-cell>Effortless setup</x-cell>
+        <x-cell span="2">Seamless audio switching</x-cell>
+        <x-cell span-y="3+1">Conversation awareness</x-cell>
+        <x-cell span-y="3+1">Adaptive audio</x-cell>
+        <x-cell span="2" span-y="4+2">Spatial Audio</x-cell>
+    </x-grid>
+
     <!-- Grid -->
     <h4 class="h5">Grid</h4>
     <x-grid columns="2" class="cards">
