@@ -135,6 +135,32 @@ div { background-color: red }
 .xh4 { font-size: calc(var(--hScale) * var(--h4-size)); }
 .xh5 { font-size: calc(var(--hScale) * var(--h5-size)); }
 .xh6 { font-size: calc(var(--hScale) * var(--h6-size)); }
+
+.type-2 { display: block; line-height: 1}
+
+:root {
+  /* Type Scale System 1 */
+  --type1-1: 1.2rem; /* 12px */
+  --type1-2: 1.4rem; /* 14px */
+  --type1-3: 1.6rem; /* 16px */
+  --type1-4: 1.8rem; /* 18px */
+  --type1-5: 2rem; /* 20px */
+  --type1-6: 2.4rem; /* 24px */
+
+  --type1-7: clamp(2.8rem, 2.8rem + ((1vw - 7.77rem) * 1.6129), 3.2rem);
+  --type1-8: clamp(3.2rem, 3.2rem + ((1vw - 7.77rem) * 3.2258), 3.6rem);
+  --type1-9: clamp(3.6rem, 3.6rem + ((1vw - 7.77rem) * 6.4516), 4.8rem);
+  --type1-10: clamp(4.8rem, 4.8rem + ((1vw - 7.77rem) * 12.9032), 6rem);
+  --type1-11: clamp(6rem, 6rem + ((1vw - 7.77rem) * 19.3548), 7.2rem);
+  --type1-12: clamp(7.2rem, 7.2rem + ((1vw - 7.77rem) * 25.8065), 9.6rem);
+
+  --type1-13: clamp(8.8rem, 8.8rem + ((1vw - 7.77rem) * 32.2581), 12.8rem);
+  --type1-14: clamp(10.4rem, 10.4rem + ((1vw - 7.77rem) * 38.7097), 16rem);
+  --type1-15: clamp(12rem, 12rem + ((1vw - 7.77rem) * 45.1613), 19.2rem);
+  --type1-16: clamp(13.6rem, 13.6rem + ((1vw - 7.77rem) * 51.6129), 22.4rem);
+  --type1-17: clamp(15.2rem, 15.2rem + ((1vw - 7.77rem) * 58.0645), 25.6rem);
+  --type1-18: clamp(16.8rem, 16.8rem + ((1vw - 7.77rem) * 64.5161), 32rem);
+}
 </style>
 
 </head>
@@ -154,6 +180,7 @@ div { background-color: red }
     <div class="s9"><h6>Skelet.css</h6></div>
     <div class="s10"><h6>Skelet.css</h6></div>
 
+
     <x-flex>
         <x-cell>
             <h1 class="xh1">heading 1</h1>
@@ -172,6 +199,29 @@ div { background-color: red }
             <h6>heading 6</h6>
         </x-cell>
     </x-flex>
+    <hr>
+
+        <span class="type-2" style="font-size: var(--type-1)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-2)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-3)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-4)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-5)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-6)">The quick brown fox jumps over the lazy dog</span>
+        -
+        <span class="type-2" style="font-size: var(--type-7)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-8)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-9)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-10)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-11)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-12)">The quick brown fox jumps over the lazy dog</span>
+        -
+        <span class="type-2" style="font-size: var(--type-13)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-14)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-15)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-16)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-17)">The quick brown fox jumps over the lazy dog</span>
+        <span class="type-2" style="font-size: var(--type-18)">The quick brown fox jumps over the lazy dog</span>
+
 
     </main>
     <footer></footer>
