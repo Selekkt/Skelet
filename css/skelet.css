@@ -52,6 +52,7 @@
     --fontStyle: normal;
 
     /* Space System */
+    --space-0: 0;
     --space-1: 0.4rem; /* 4px */
     --space-2: 0.8rem; /* 8px */
     --space-3: 1.2rem; /* 12px */
