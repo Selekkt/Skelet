@@ -1,4 +1,4 @@
-/*! Skelet.css - v6.0.0 | MIT License | (c) 2024 Selekkt. | https://selekkt.dk/skelet/ */
+/*! Skelet.css - v6.0.0 | MIT License | (c) 2025 Selekkt. | https://selekkt.dk/skelet/ */
 
 /* ------------------
     variables
@@ -219,7 +219,7 @@ i:has(svg) { display: block; line-height: 0 }
 ::selection { background: var(--selectionBg); color: var(--selectionText) }
 ::-moz-selection { background: var(--selectionBg); color: var(--selectionText) }
 
-html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adjust: 100%; scroll-padding-top: var(--scrollPadding, auto) }
+html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adjust: 100%; scroll-padding-top: var(--scrollPadding, auto); interpolate-size: allow-keywords }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: var(--scrollBehavior, smooth) } }
 body { margin: 0; background: var(--bgColor); color: var(--color); font: var(--fontStyle) var(--fontWeight) var(--fontSize) var(--fontFamily); line-height: var(--fontLine); letter-spacing: var(--fontSpace) }
 
@@ -266,8 +266,8 @@ h1,h2,h3,h4,h5,h6,
     margin: var(--hMargin);
 }
 
-p { margin:var(--pMargin) }
-blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic }
+p { margin:var(--pMargin); text-wrap: pretty }
+blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic; text-wrap: pretty }
 
 :where(a,[role="link"]):not([href]) { cursor: not-allowed }
 :where(a,[role="link"]):not(.button,[role="button"]) { color: var(--linkColor); cursor: pointer; text-decoration: var(--linkDecoration, auto); text-underline-offset: var(--linkDecorationOffset, inherit) }
@@ -467,10 +467,6 @@ x-stack {
     overflow: var(--stackOverflow, initial);
 }
 
-x-stack[no-style] :is(input,button) { border: 0; margin: 0; border-radius: 0; height: auto; background: transparent!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
-x-stack[no-style] input:is(:hover,:focus,:active) { border: none }
-x-stack:is([no-style],[presuffix]) input:focus { box-shadow: none; outline: none!important; border: none!important }
-
 x-stack[presuffix] {
     --buttonColor: currentColor;
 
@@ -480,6 +476,7 @@ x-stack[presuffix] {
     border-radius: var(--inputRadius);
     margin: var(--inputMargin);
     width: var(--inputWidth, auto);
+    max-width: 100%;
 }
 
 x-stack[presuffix]:hover { border-color: var(--inputBorderHover); color: var(--inputColorHover); background: var(--inputBgHover) }
@@ -494,6 +491,10 @@ x-stack[presuffix] :is(input,button) { padding: var(--inputPadding); margin: 0!i
 x-stack[presuffix] > label { white-space: nowrap; font-weight: normal }
 x-stack[presuffix] > :where(label,button,span):first-child { border: 0; border-inline-end: inherit; border-radius: 0 }
 x-stack[presuffix] > :where(label,button,span):last-child { border: 0; border-inline-start: inherit; border-radius: 0 }
+
+x-stack[no-style] :is(input,button) { border: 0; margin: 0; border-radius: 0; height: auto; background: none!important; color: currentColor; font-size: var(--stackFontSize, inherit) }
+x-stack[no-style] input:is(:hover,:focus,:active) { border: none }
+x-stack:is([no-style],[presuffix]) input:focus { box-shadow: none; outline: none!important; border: none!important }
 
 /* ------------------
   buttons
@@ -982,7 +983,7 @@ table.has-borders td:not(:last-of-type) { border-inline-end: var(--tableBorder) 
 /* ------------------
   css grid
 ------------------ */
-x-grid,[x-grid] { 
+:is(x-grid,[x-grid]) {
     --grid-mm: 0px, 1fr; /* MinMax */
     --grid-tc-ln: 4; /* Template Columns Line Name/Number */
     --grid-tc: repeat(var(--grid-tc-ln), minmax(var(--grid-mm))); /* Template Columns */
@@ -996,7 +997,7 @@ x-grid,[x-grid] {
     grid-template-columns: var(--grid-tc); /* default columns */ 
 }
 
-x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inherit }
+:is(x-subgrid,[x-subgrid]) { display: grid; grid-template-columns: subgrid; gap: inherit }
 
 :where(x-grid,[x-grid],x-subgrid,[x-subgrid]) img { object-fit: contain; max-width: 100% }
 :where(x-grid,[x-grid],x-subgrid,[x-subgrid]) > * { appearance: none; -webkit-appearance: none }
@@ -1014,13 +1015,13 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 [columns="11"] { --grid-tc-ln: 11 }
 [columns="12"] { --grid-tc-ln: 12 }
 
-[columns="fit"] { --grid-tc-ln: auto-fit }
-[columns="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 5rem 1fr }
+[columns="fit"] { --grid-tc-ln: auto-fit; --grid-mm: 10rem, 1fr }
+[columns="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 10rem, 1fr }
 [columns="1f"] { --grid-tc-ln: 1 }
 [columns="1f"] > * { grid-column: 1 / -1 }
 
 [columns="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
-[columns="stack"] > * { position: relative; grid-row: 1; grid-column: 1 }
+[columns="stack"] > * { position: relative; grid-row: 1; grid-column: 1; z-index: 0 }
 [columns="stack"] > *:first-child { z-index: 1 }
 
 /*** Grid Column - X axis */
@@ -1106,8 +1107,8 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     [columns-s="10"] { --grid-tc-ln: 10 }
     [columns-s="11"] { --grid-tc-ln: 11 }
     [columns-s="12"] { --grid-tc-ln: 12 }
-    [columns-s="fit"] { --grid-tc-ln: auto-fit }
-    [columns-s="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 5rem 1fr }
+    [columns-s="fit"] { --grid-tc-ln: auto-fit; --grid-mm: 10rem, 1fr }
+    [columns-s="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 10rem, 1fr }
     [columns-s="1f"] { --grid-tc-ln: 1 }
     [columns-s="1f"] > * { grid-column: 1 / -1 }
     [columns-s="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
@@ -1199,8 +1200,8 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     [columns-m="10"] { --grid-tc-ln: 10 }
     [columns-m="11"] { --grid-tc-ln: 11 }
     [columns-m="12"] { --grid-tc-ln: 12 }
-    [columns-m="fit"] { --grid-tc-ln: auto-fit }
-    [columns-m="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 5rem 1fr }
+    [columns-m="fit"] { --grid-tc-ln: auto-fit; --grid-mm: 10rem, 1fr }
+    [columns-m="fill"] { --grid-tc-ln: auto-fill; --grid-mm: 10rem, 1fr }
     [columns-m="1f"] { --grid-tc-ln: 1 }
     [columns-m="1f"] > * { grid-column: 1 / -1 }
     [columns-m="stack"] { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr }
@@ -1281,7 +1282,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
   flexbox
 ------------------ */
 /*  Flex Container */
-:where(x-flex,[x-flex]) { --jsDisplay: flex; display: flex; gap: var(--gap) }
+:is(x-flex,[x-flex]) { --jsDisplay: flex; display: flex; gap: var(--gap) }
 :where(x-flex,[x-flex]) > * { flex: 0 1 auto; width: auto; appearance: none }
 :where(x-flex,[x-flex]).even > * { width: 100% }
 :where(x-flex,[x-flex]) img { object-fit: contain; max-width: 100% }
@@ -1873,6 +1874,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 .center { display: block; text-align: center; margin: 0 auto }
 .display-none { display: none }
 .overflow { overflow: hidden }
+.contents { display: contents }
 
 .text-clip { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .text-start { text-align: start }
@@ -1884,10 +1886,11 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
 .text-uppercase { text-transform:uppercase }
 .text-lowercase { text-transform:lowercase }
 .text-capitalize { text-transform:capitalize }
-.text-underline { border-block-end: 1px solid currentColor }
+.text-underline { text-decoration: underline }
 .text-line-through { text-decoration: line-through }
 .text-break-word { overflow-wrap: break-word }
 .text-balance { text-wrap: balance }
+.text-pretty { text-wrap: pretty }
 
 .sticky { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
 .sticky-bottom { position: sticky; inset-block-end: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
@@ -1910,6 +1913,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     .center-s { display: block; text-align: center; margin: 0 auto }
     .display-none-s { display: none }
     .overflow-s { overflow: hidden }
+    .contents-s { display: contents }
 
     .text-clip-s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-s { text-align: start }
@@ -1921,10 +1925,11 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     .text-uppercase-s { text-transform:uppercase }
     .text-lowercase-s { text-transform:lowercase }
     .text-capitalize-s { text-transform:capitalize }
-    .text-underline-s { border-block-end: 1px solid currentColor }
+    .text-underline-s { text-decoration: underline }
     .text-line-through-s { text-decoration: line-through }
     .text-break-word-s { overflow-wrap: break-word }
     .text-balance-s { text-wrap: balance }
+    .text-pretty-s { text-wrap: pretty }
 
     .sticky-s { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
     .sticky-bottom-s { position: sticky; inset-block-end: var(--sticky, 0) }
@@ -1948,6 +1953,7 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     .center-m { display: block; text-align: center; margin: 0 auto }
     .display-none-m { display: none }
     .overflow-m { overflow: hidden }
+    .contents-m { display: contents } 
 
     .text-clip-m { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .text-start-m { text-align: start }
@@ -1959,10 +1965,11 @@ x-subgrid,[x-subgrid] { display: grid; grid-template-columns: subgrid; gap: inhe
     .text-uppercase-m { text-transform:uppercase }
     .text-lowercase-m { text-transform:lowercase }
     .text-capitalize-m { text-transform:capitalize }
-    .text-underline-m { border-block-end: 1px solid currentColor }
+    .text-underline-m { text-decoration: underline }
     .text-line-through-m { text-decoration: line-through }
     .text-break-word-m { overflow-wrap: break-word }
     .text-balance-m { text-wrap: balance }
+    .text-pretty-m { text-wrap: pretty }
 
     .sticky-m { position: sticky; inset-block-start: var(--sticky, 0); z-index: var(--stickyZindex, 1) }
     .sticky-bottom-m { position: sticky; inset-block-end: var(--sticky, 0) }
