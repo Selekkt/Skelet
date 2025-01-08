@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="../css/skelet.css">
+
+<style>
+    /* ------------------
+      css grid
+    ------------------ */
+    x-grid,[x-grid],x-subgrid,[x-subgrid] { 
+        --grid-mm: 0, 1fr; /* MinMax */
+        --grid-tc-ln: 1; /* Template Columns Line Name/Number */
+        --grid-tc: repeat(var(--grid-tc-ln), minmax(var(--grid-mm))); /* Template Columns */
+        --grid-cs: 1; /* Column Start */
+        --grid-ce: -1; /* Column End */
+        --grid-rs: 1; /* Row Start */
+        --grid-re: -1; /* Row End */
+        --gap: var(--rowGap, 5rem) var(--columnGap, 5rem);
+
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: var(--grid-tc); /* default columns */ 
+    }
+
+    x-subgrid,[x-subgrid],[x-subgrid="column"] { --grid-tc: subgrid }
+
+    :where(x-grid,[x-grid],x-subgrid,[x-subgrid]) img { object-fit: contain; max-width: 100% }
+    :where(x-grid,[x-grid],x-subgrid,[x-subgrid]) > * { appearance: none; -webkit-appearance: none }
+
+    [columns="1"] { --grid-tc-ln: 1 }
+    [columns="2"] { --grid-tc-ln: 2 }
+    [columns="3"] { --grid-tc-ln: 3 }
+    [columns="4"] { --grid-tc-ln: 4 }
+    [columns="5"] { --grid-tc-ln: 5 }
+    [columns="6"] { --grid-tc-ln: 6 }
+    [columns="7"] { --grid-tc-ln: 7 }
+    [columns="8"] { --grid-tc-ln: 8 }
+    [columns="9"] { --grid-tc-ln: 9 }
+    [columns="10"] { --grid-tc-ln: 10 }
+    [columns="11"] { --grid-tc-ln: 11 }
+    [columns="12"] { --grid-tc-ln: 12 }
+
+    [columns="fit"] { --grid-tc-ln: auto-fit }
+    [columns="fill"] { --grid-tc-ln: auto-fill }
+
+    [columns="1f"] { --grid-tc-ln: 1 }
+    [columns="1f"] > * { grid-column: 1 / -1 }
+    
+    /*** Grid Column - X axis */
+    * > [span^="1"] { --grid-cs: 1 }
+    * > [span^="2"] { --grid-cs: 2 }
+    * > [span^="3"] { --grid-cs: 3 }
+    * > [span^="4"] { --grid-cs: 4 }
+    * > [span^="5"] { --grid-cs: 5 }
+    * > [span^="6"] { --grid-cs: 6 }
+    * > [span^="7"] { --grid-cs: 7 }
+    * > [span^="8"] { --grid-cs: 8 }
+    * > [span^="9"] { --grid-cs: 9 }
+    * > [span^="10"] { --grid-cs: 10 }
+    * > [span^="11"] { --grid-cs: 11 }
+    * > [span^="12"] { --grid-cs: 12 }
+    
+    * > [span$="+1"], [span="1"] { --grid-ce: 1 }
+    * > [span$="+2"], [span="2"] { --grid-ce: 2 }
+    * > [span$="+3"], [span="3"] { --grid-ce: 3 }
+    * > [span$="+4"], [span="4"] { --grid-ce: 4 }
+    * > [span$="+5"], [span="5"] { --grid-ce: 5 }
+    * > [span$="+6"], [span="6"] { --grid-ce: 6 }
+    * > [span$="+7"], [span="7"] { --grid-ce: 7 }
+    * > [span$="+8"], [span="8"] { --grid-ce: 8 }
+    * > [span$="+9"], [span="9"] { --grid-ce: 9 }
+    * > [span$="+10"], [span$="-9"], [span="10"] { --grid-ce: 10 }
+    * > [span$="+11"], [span$="-10"], [span="11"] { --grid-ce: 11 }
+    * > [span$="+12"], [span$="-11"], [span="12"] { --grid-ce: 12 }
+    * > [span$="-12"] { --grid-ce: 13 }
+    
+    /* connect vars */
+    * > [span] { grid-column-end: span var(--grid-ce) }
+    * > [span*="+"], [span*="-"], [span*=".."] { grid-column-start: var(--grid-cs) }
+    * > [span*="-"], [span*=".."] { grid-column-end: var(--grid-ce) }
+    * > [span="row"] { grid-column: 1 / -1 }
+    
+    /*** Grid Row - Y axis */
+    * > [span-y^="1"] { --grid-rs: 1 }
+    * > [span-y^="2"] { --grid-rs: 2 }
+    * > [span-y^="3"] { --grid-rs: 3 }
+    * > [span-y^="4"] { --grid-rs: 4 }
+    * > [span-y^="5"] { --grid-rs: 5 }
+    * > [span-y^="6"] { --grid-rs: 6 }
+    * > [span-y^="7"] { --grid-rs: 7 }
+    * > [span-y^="8"] { --grid-rs: 8 }
+    * > [span-y^="9"] { --grid-rs: 9 }
+    * > [span-y^="10"] { --grid-rs: 10 }
+    * > [span-y^="11"] { --grid-rs: 11 }
+    * > [span-y^="12"] { --grid-rs: 12 }
+    
+    * > [span-y$="+1"], [span-y="1"] { --grid-re: 1 }
+    * > [span-y$="+2"], [span-y$="-1"], [span-y="2"] { --grid-re: 2 }
+    * > [span-y$="+3"], [span-y$="-2"], [span-y="3"] { --grid-re: 3 }
+    * > [span-y$="+4"], [span-y$="-3"], [span-y="4"] { --grid-re: 4 }
+    * > [span-y$="+5"], [span-y$="-4"], [span-y="5"] { --grid-re: 5 }
+    * > [span-y$="+6"], [span-y$="-5"], [span-y="6"] { --grid-re: 6 }
+    * > [span-y$="+7"], [span-y$="-6"], [span-y="7"] { --grid-re: 7 }
+    * > [span-y$="+8"], [span-y$="-7"], [span-y="8"] { --grid-re: 8 }
+    * > [span-y$="+9"], [span-y$="-8"], [span-y="9"] { --grid-re: 9 }
+    * > [span-y$="+10"], [span-y$="-9"], [span-y="10"] { --grid-re: 10 }
+    * > [span-y$="+11"], [span-y$="-10"], [span-y="11"] { --grid-re: 11 }
+    * > [span-y$="+12"], [span-y$="-11"], [span-y="12"] { --grid-re: 12 }
+    * > [span-y$="-12"] { --grid-re: 13 }
+
+    /* connect vars */
+    * > [span-y] { grid-row-end: span var(--grid-re) }
+    * > [span-y*="+"], [span-y*="-"] { grid-row-start: var(--grid-rs) }
+    * > [span-y*="-"] { grid-row-end: var(--grid-re) }
+    * > [span-y="1f"]  { grid-row: 1 / -1 }
+    </style>
+
+
+    <style>
+        :root {
+            --hMargin: 0;
+            --hWeight: 300;
+
+        }
+
+        #app {
+            margin: 1.5%;
+        }
+
+        header { margin-block-end: 20vh }
+        footer { margin-block: 20vh 5vh }
+
+        x-space {
+            margin-block: 10vh;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <x-grid columns="8">
+        <header span="8" x-subgrid ai="center">
+            <x-cell span="3">
+                <h1 class="h3">Selekkt.</h1>
+            </x-cell>
+
+            <x-cell span="5+3">
+                <ul class="inline h3">
+                    <li>Work,</li>
+                    <li>Agency,</li>
+                    <li>Careers,</li>
+                    <li>Store</li>
+                </ul>
+            </x-cell>
+
+            <x-cell js="end">
+                <h3 class="h3">Let's talk</h3>
+            </x-cell>
+        </header>
+
+        <main span="8" x-subgrid>
+            <x-subgrid span="4">
+                <h3 class="h3">All projects</h3>
+            </x-subgrid>
+
+            <x-subgrid span="4">
+                <x-cell span="3">
+                    <p class="h3">We design, develop and ship digital products that drive success for our clients through fresh websites, strong brand systems and compelling creative content.</p>
+                </x-cell>
+            </x-subgrid>
+
+            <x-space></x-space>
+
+            <x-subgrid span="8">
+                <x-cell span="4">Skelet.css</x-cell>
+                <x-cell span="2">CSS framework</x-cell>
+                <x-cell span="1">2017</x-cell>
+                <x-cell span="1" js="end">View</x-cell>
+            </x-subgrid>
+
+            <x-subgrid span="8">
+                <x-cell span="4">Skelet.css</x-cell>
+                <x-cell span="2">CSS framework</x-cell>
+                <x-cell span="1">2017</x-cell>
+                <x-cell span="1" js="end">View</x-cell>
+            </x-cell>
+
+            <x-subgrid span="8">
+                <x-cell span="4">Skelet.css</x-cell>
+                <x-cell span="2">CSS framework</x-cell>
+                <x-cell span="1">2017</x-cell>
+                <x-cell span="1" js="end">View</x-cell>
+            </x-cell>
+
+            <x-subgrid span="8">
+                <x-cell span="4">Skelet.css</x-cell>
+                <x-cell span="2">CSS framework</x-cell>
+                <x-cell span="1">2017</x-cell>
+                <x-cell span="1" js="end">View</x-cell>
+            </x-cell>
+        </main>
+        
+        <footer span="8" x-subgrid>
+            <x-cell span="3">
+                <p class="h3">An example of a page layout using Skelet.css' built-in <strong>x-subgrid</strong> system.</p>
+            </x-cell>
+
+            <x-cell span="5..">
+                <p class="h3">Source code available via <em>view-source</em>:</p>
+                <small>At the moment the layout is not mobile-friendly.</small>
+            </x-cell>
+        </footer>
+    </x-grid>
+</div>
+
+</body>
+</html>

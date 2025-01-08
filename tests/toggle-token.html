@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> <!-- browse the icons: https://fontawesome.com/icons?d=listing&m=free -->
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="../css/skelet.css">
+<style>
+
+</style>
+</head>
+<body class="a11y" style="padding:2rem">
+
+<div>
+    <fieldset class="toggle-token" x-flex>
+        <legend>Ramen type</legend>
+
+            <label tabindex="-1">
+                <input type="radio" name="ramen_type" role="switch" value="Tonkotsu" checked>
+                <span>Tonkotsu</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="ramen_type" role="switch" value="Shōyū">
+                <span>Shōyū</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="ramen_type" role="switch" value="Miso">
+                <span>Miso</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="ramen_type" role="switch" value="Shio">
+                <span>Shio</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="ramen_type" role="switch" value="Abura soba">
+                <span>Abura soba</span>
+            </label>
+
+    </fieldset>
+</div>
+<br>
+<div>
+    <fieldset class="toggle-token" x-flex>
+        <legend>Ramen toppings</legend>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Wakame</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Moyashi</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Seaweed</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Green onions</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox" disabled>
+                <span>Kikurage</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Naruto</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Hard boiled egg</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox" disabled>
+                <span>Corn</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="checkbox">
+                <span>Grilled pork</span>
+            </label>
+
+    </fieldset>
+</div>
+<br>
+<div>
+    <fieldset class="toggle-token" x-flex>
+        <legend>Checkout</legend>
+
+            <label tabindex="-1">
+                <input type="radio" name="checkout">
+                <span>Eat here</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="checkout" checked>
+                <span>Take-away</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="checkout">
+                <span>Delivery</span>
+            </label>
+
+    </fieldset>
+</div>
+
+<button>Place order</button>
+
+<hr>
+
+<style>
+.custom.toggle-token {
+    --tokenBg: transparent;
+    --tokenBgHover: transparent;
+    --tokenBgActive: transparent;
+
+    --tokenBorderColor: transparent;
+    --tokenBorderHover: transparent;
+    --tokenBorderActive: transparent;
+
+    --tokenColor: currentColor;
+    --tokenColorHover: currentColor;
+    --tokenColorActive: currentColor;
+
+    --tokenDecorationHover: underline; 
+    --tokenDecorationActive: underline; 
+}
+</style>
+
+<div>
+    <fieldset class="toggle-token custom" x-flex>
+        <legend>Custom .toggle-token</legend>
+
+            <label tabindex="-1">
+                <input type="radio" name="checkout" role="switch" value="Eat here">
+                <span>Eat here</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="checkout" role="switch" value="Take-away" checked>
+                <span>Take-away</span>
+            </label>
+
+            <label tabindex="-1">
+                <input type="radio" name="checkout" role="switch" value="Delivery" disabled>
+                <span>Delivery</span>
+            </label>
+
+    </fieldset>
+</div>
+
+</body>
+</html>

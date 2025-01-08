@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>JS states</title>
+  <script>document.documentElement.className='js'</script>
+  <link rel="stylesheet" href="../css/skelet.css">
+
+<style>
+x-grid {
+    height: 500px;
+    width: 1200px;
+}
+</style>
+
+<!-- 
+    ac aka align-content only works if there's a height set to the grid. 
+    https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Box_alignment_in_grid_layout 
+-->
+
+  <body>
+
+    <x-grid class="debug" ac="between" jc="end">
+        <x-cell span="2">
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <span>Lorem ipsum dolor sit amet.</span>
+        </x-cell>
+        <x-cell>2</x-cell>
+        <x-cell>3</x-cell>
+        <x-cell>4</x-cell>
+        <x-cell>5</x-cell>
+        <x-cell>6</x-cell>
+        <x-cell>7</x-cell>
+        <x-cell>8</x-cell>
+    </x-grid>
+
+    <hr>
+
+    <x-grid class="debug" ai="center" ji="center">
+        <x-cell span="2">
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <span>Lorem ipsum dolor sit amet.</span>
+        </x-cell>
+        <x-cell>2</x-cell>
+        <x-cell>3</x-cell>
+        <x-cell>4</x-cell>
+        <x-cell>5</x-cell>
+        <x-cell>6</x-cell>
+        <x-cell>7</x-cell>
+        <x-cell>8</x-cell>
+    </x-grid>
+
+</body>
+</html>

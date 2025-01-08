@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> <!-- browse the icons: https://fontawesome.com/icons?d=listing&m=free -->
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="../css/skelet.css">
+
+    <style>
+x-grid:has(debug-line) { position: relative }
+x-grid:has(debug-line) > *:not(debug-line) { z-index: 1; position: relative }
+
+debug-line {
+    display: grid;
+    gap: inherit;
+    grid-template-columns: inherit;
+    grid-template-rows: inherit;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+debug-line > x-cell { background: rgb(255 193 203 / 0.4) }
+    </style>
+
+</head>
+<body class="a11y" style="padding:2rem">
+
+    <header></header>
+    <main>
+
+        <x-grid columns="5" columns-m="8" columns-s="2" class="debug outline">
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+        </x-grid>
+
+        <x-grid class="debug outline">
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+            <x-cell>Skelet.css</x-cell>
+        </x-grid>
+
+    </main>
+    <footer></footer>
+
+<script>
+class xGridVisualAid {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.xGrids = document.querySelectorAll('x-grid');
+        this.setupDebugLines();
+
+        const observer = new MutationObserver(this.handleClassMutation.bind(this));
+        this.xGrids.forEach(xGrid => {
+            observer.observe(xGrid, { attributes: true });
+        });
+
+        window.addEventListener('resize', this.setupDebugLines.bind(this));
+    }
+
+    setupDebugLines() {
+        this.xGrids.forEach(xGrid => this.createDebugLine(xGrid));
+    }
+
+    createDebugLine(xGrid) {
+        if (!xGrid.classList.contains('debug')) return;
+
+        // Remove any existing debug-line
+        const existingDebugLine = xGrid.querySelector('debug-line');
+        if (existingDebugLine) existingDebugLine.remove();
+
+        let columns = xGrid.getAttribute('columns') || 4;
+
+        if (window.innerWidth <= 777) {
+            columns = xGrid.getAttribute('columns-s') || columns;
+        } else if (window.innerWidth >= 778 && window.innerWidth <= 1024) {
+            columns = xGrid.getAttribute('columns-m') || columns;
+        }
+
+        columns = parseInt(columns);
+
+        const debugLine = document.createElement('debug-line');
+        for (let i = 0; i < columns; i++) {
+            const cell = document.createElement('x-cell');
+            debugLine.appendChild(cell);
+        }
+
+        const firstCell = xGrid.querySelector('x-cell');
+        if (firstCell && firstCell.parentNode === xGrid) {
+            xGrid.insertBefore(debugLine, firstCell);
+        } else {
+            xGrid.appendChild(debugLine);
+        }
+    }
+
+    handleClassMutation(mutationList) {
+        mutationList.forEach(mutation => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const xGrid = mutation.target;
+                this.createDebugLine(xGrid);
+            }
+        });
+    }
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new xGridVisualAid();
+});
+</script>
+
+</body>
+</html>
