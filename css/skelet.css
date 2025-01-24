@@ -1,4 +1,4 @@
-/*! Skelet.css - v6.0.0 | MIT License | (c) 2025 Selekkt. | https://selekkt.dk/skelet/ */
+/*! Skelet.css - v6.1.0 | MIT License | (c) 2025 Selekkt. | https://selekkt.dk/skelet/ */
 
 /* ------------------
     variables
@@ -153,12 +153,17 @@
     --rowGap: var(--space-3);
     --columnGap: var(--space-3);
     --gap: var(--rowGap) var(--columnGap);
+
+    /* a11y */
+    --a11yStyle: 0 0 0 0.20rem;
+    --a11yColor: var(--inputFocus);
+    --a11yShadow: var(--a11yStyle) var(--a11yColor);
+    --a11yOutline: 2px solid transparent;
+    --a11yOffset: 2px;
 }
 
 /*** Dark Mode */
 .dark-mode, [dark-mode], [color-scheme="dark"] {
-    color-scheme: dark;
-
     --bgColor: #000;
     --color: #FFF;
     --colorInverse: #000;
@@ -183,6 +188,8 @@
 
     --hrColor: var(--inputBorderColor);
     --hrGradient: rgb(0 0 0 / 0);
+
+    color-scheme: dark;
 }
 
 /* ------------------
@@ -223,7 +230,7 @@ html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adju
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: var(--scrollBehavior, smooth) } }
 body { margin: 0; background: var(--bgColor); color: var(--color); font: var(--fontStyle) var(--fontWeight) var(--fontSize) var(--fontFamily); line-height: var(--fontLine); letter-spacing: var(--fontSpace) }
 
-#app { display: flex; flex-direction: column; min-height: 100vh }
+#app { display: flex; flex-direction: column; min-height: 100vh; container: app-container / inline-size }
 main { flex: 1 }
 
 /* ------------------
@@ -280,10 +287,10 @@ blockquote { max-width: 90%; margin: var(--space-4) auto; font-style: italic; te
 :where(a,[role="link"]).no-style { text-decoration: none }
 
 /*** Accessibility */
-*:focus-visible { outline-color: var(--inputFocus); outline-offset: var(--a11yOffset, 3px) }
+*:focus-visible { outline-color: var(--a11yColor); outline-offset: var(--a11yOffset, 3px) }
 .a11y-off *:focus-visible { outline: 0; box-shadow: none }
 .a11y-inputs-off :where(select,input,textarea):focus-visible { outline: 0; box-shadow: none }
-.a11y-custom :where(*,a):focus-visible { box-shadow: var(--a11yStyle, 0 0 0 0.20rem) var(--a11yColor, var(--inputFocus)); outline: var(--a11yOutline, 2px solid transparent); outline-offset: var(--a11yOffset, 2px) }
+.a11y-custom :where(*,a):focus-visible { box-shadow: var(--a11yStyle) var(--a11yColor); outline: var(--a11yOutline); outline-offset: var(--a11yOffset) }
 
 .visibility-hidden { visibility: hidden }
 .sr-only, .visually-hidden, .visually-hidden-focus:not(:focus):not(:focus-within) { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important }
@@ -696,7 +703,8 @@ label, legend { display: inline-flex; gap: 0.7rem; margin-block-end: var(--input
 fieldset { border: 1px solid var(--inputBorderColor); border-radius: var(--inputRadius) }
 legend { padding: var(--inputPadding) }
 option { padding: 0.5rem; color: var(--inputColor) }
-:is(input,textarea).is-blank { border:none!important; background:transparent }
+:is(input,textarea).is-blank { border:none!important; background:transparent!important; color: currentColor }
+:is(input,textarea).is-blank:where(:hover,:focus,:active) { border:none!important; background: transparent!important; color: currentColor }
 
 select {
     background-image: linear-gradient(45deg, transparent 50%, var(--inputColor) 50%), linear-gradient(135deg, var(--inputColor) 50%, transparent 50%), linear-gradient(to right, var(--inputBorderColor), var(--inputBorderColor));
