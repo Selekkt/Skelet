@@ -230,7 +230,7 @@ html { height: 100%; font-size: 62.5%; line-height: 1.15; -webkit-text-size-adju
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: var(--scrollBehavior, smooth) } }
 body { margin: 0; background: var(--bgColor); color: var(--color); font: var(--fontStyle) var(--fontWeight) var(--fontSize) var(--fontFamily); line-height: var(--fontLine); letter-spacing: var(--fontSpace) }
 
-#app { display: flex; flex-direction: column; min-height: 100vh; container: app-container / inline-size }
+#app { display: flex; flex-direction: column; min-height: 100vh }
 main { flex: 1 }
 
 /* ------------------
